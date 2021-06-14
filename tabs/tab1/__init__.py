@@ -3,8 +3,9 @@ from tkinter import ttk
 
 def criarTab(tab_control):
     tab1 = ttk.Frame(tab_control)
+    
     tab_control.add(tab1, text='tab1')
-    #label = Label(tab1, text='Name').grid(column=0,row=0)
+    label = Label(tab1, text='Name').grid(column=0,row=0)
     #label.pack()
 
 if __name__ == '__main__':
