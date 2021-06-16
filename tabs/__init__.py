@@ -3,16 +3,13 @@ from tkinter import *
 from tkinter import ttk
 
 
-
-
 def criarLinhaDeCoordenadas(master, row = 0):
     linha = dict()
     eixos = ('x','y','z')
 
+    # Enable horizontal scaling in this column
+    master.grid_columnconfigure((0,1,2), weight=1)
     for i in range(0, 3):
-        # Enable horizontal scaling in this column
-        master.grid_columnconfigure(i, weight=1)
-
         c = dict()
         c['coordenada'] = tk.IntVar()
 
@@ -27,3 +24,14 @@ def criarLinhaDeCoordenadas(master, row = 0):
         linha[eixos[i]] = c
     
     return (linha)
+
+def criarLinhaDeTexto(master, text='', font=(), row = 0, columnspan=1):
+    lbl = ttk.Label(master, text=text)
+    lbl.grid(row=row, columnspan=columnspan, sticky='W')
+    lbl.config(font=font)
+    return lbl
+
+
+def obterVetor(linha):
+    return (linha['x']['coordenada'].get(), linha['y']['coordenada'].get(), linha['z']['coordenada'].get())
+    

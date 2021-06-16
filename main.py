@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from tabs import tab1, produto_misto
+from tabs import padrao, produto_escalar, produto_misto, produto_vetorial
 
 
 win = Tk()
@@ -12,10 +12,9 @@ win.grid_rowconfigure(0, weight=1)
 tab_control = ttk.Notebook(win)
 tab_control.grid(sticky='NSEW')
 
-
-
-
-tab1.criarTab(tab_control)
+padrao.criarTab(tab_control)
+produto_escalar.criarTab(tab_control)
+produto_vetorial.criarTab(tab_control)
 produto_misto.criarTab(tab_control)
 
 

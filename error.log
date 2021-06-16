@@ -1,0 +1,62 @@
+
+[2021-06-15 22:19:57] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 430, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 60, in main
+    app = MainFrame(root)
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 104, in __init__
+    self.browser_frame.LoadUrl('file:///C:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculo.html')
+AttributeError: 'BrowserFrame' object has no attribute 'LoadUrl'
+
+
+[2021-06-15 22:20:53] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 430, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 60, in main
+    app = MainFrame(root)
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 104, in __init__
+    self.master.get_browser().LoadUrl('file:///C:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculo.html')
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 2101, in __getattr__
+    return getattr(self.tk, attr)
+AttributeError: '_tkinter.tkapp' object has no attribute 'get_browser'
+
+
+[2021-06-15 22:25:23] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 430, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 60, in main
+    app = MainFrame(root)
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 104, in __init__
+    self.get_browser().LoadUrl('file:///C:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculo.html')
+AttributeError: 'NoneType' object has no attribute 'LoadUrl'
+
+
+[2021-06-15 22:27:27] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 431, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 60, in main
+    app = MainFrame(root)
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 105, in __init__
+    b.LoadUrl('file:///C:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculo.html')
+AttributeError: 'NoneType' object has no attribute 'LoadUrl'
+
+
+[2021-06-15 22:28:17] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 431, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 60, in main
+    app = MainFrame(root)
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 105, in __init__
+    self.b.LoadUrl('file:///C:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculo.html')
+AttributeError: 'NoneType' object has no attribute 'LoadUrl'
+
+
+[2021-06-15 22:34:43] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 431, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 60, in main
+    app = MainFrame(root)
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef2.py", line 105, in __init__
+    LoadUrl('file:///C:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculo.html')
+NameError: name 'LoadUrl' is not defined
+
