@@ -97,7 +97,7 @@ class MainFrame(tk.Frame):
         tk.Grid.columnconfigure(self, 0, weight=0)
 
         # BrowserFrame
-        self.browser_frame = BrowserFrame(self, self.navigation_bar)
+        self.browser_frame = BrowserFrame(self)#, self.navigation_bar)
         self.browser_frame.grid(row=1, column=0,
                                 sticky=(tk.N + tk.S + tk.E + tk.W))
         tk.Grid.rowconfigure(self, 1, weight=1)
@@ -173,7 +173,6 @@ class BrowserFrame(tk.Frame):
         self.browser = cef.CreateBrowserSync(window_info,
                                              url="file:///C:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculo.html")
         assert self.browser
-        self.browser.SetClientHandler(LifespanHandler(self))
         self.browser.SetClientHandler(LoadHandler(self))
         self.browser.SetClientHandler(FocusHandler(self))
         self.message_loop_work()
@@ -216,8 +215,11 @@ class BrowserFrame(tk.Frame):
         cef.MessageLoopWork()
         self.after(10, self.message_loop_work)
 
+    # Ativa o resize
     def on_configure(self, _):
-        if not self.browser:
+        if self.browser:
+            self.on_mainframe_configure(_.width, _.height)
+        else:
             self.embed_browser()
 
     def on_root_configure(self):
@@ -246,33 +248,8 @@ class BrowserFrame(tk.Frame):
         if LINUX and self.browser:
             self.browser.SetFocus(False)
 
-    def on_root_close(self):
-        logger.info("BrowserFrame.on_root_close")
-        if self.browser:
-            logger.debug("CloseBrowser")
-            self.browser.CloseBrowser(True)
-            self.clear_browser_references()
-        else:
-            logger.debug("tk.Frame.destroy")
-            self.destroy()
-            
 
-    def clear_browser_references(self):
-        # Clear browser references that you keep anywhere in your
-        # code. All references must be cleared for CEF to shutdown cleanly.
-        self.browser = None
-
-
-class LifespanHandler(object):
-
-    def __init__(self, tkFrame):
-        self.tkFrame = tkFrame
-
-    def OnBeforeClose(self, browser, **_):
-        logger.debug("LifespanHandler.OnBeforeClose")
-        self.tkFrame.quit()
-
-
+# FAZ O LINK APARECER
 class LoadHandler(object):
 
     def __init__(self, browser_frame):
@@ -345,10 +322,10 @@ class NavigationBar(tk.Frame):
 
         # Url entry
         self.url_entry = ttk.Entry(self)
-        self.url_entry.bind("<FocusIn>", self.on_url_focus_in)
-        self.url_entry.bind("<FocusOut>", self.on_url_focus_out)
+        #self.url_entry.bind("<FocusIn>", self.on_url_focus_in)
+        #self.url_entry.bind("<FocusOut>", self.on_url_focus_out)
         self.url_entry.bind("<Return>", self.on_load_url)
-        self.url_entry.bind("<Button-1>", self.on_button1)
+        #self.url_entry.bind("<Button-1>", self.on_button1)
         self.url_entry.grid(row=0, column=3,
                             sticky=(tk.N + tk.S + tk.E + tk.W))
         tk.Grid.rowconfigure(self, 0, weight=100)
@@ -384,6 +361,7 @@ class NavigationBar(tk.Frame):
             self.master.get_browser().StopLoad()
             self.master.get_browser().LoadUrl(self.url_entry.get())
 
+    # Foca no essencial
     def on_button1(self, _):
         """For focus problems see Issue #255 and Issue #535. """
         logger.debug("NavigationBar.on_button1")
@@ -418,12 +396,6 @@ class NavigationBar(tk.Frame):
                 self.forward_state = tk.DISABLED
         self.after(100, self.update_state)
 
-
-class Tabs(tk.Frame):
-
-    def __init__(self):
-        tk.Frame.__init__(self)
-        # TODO: implement tabs
 
 
 if __name__ == '__main__':

@@ -3,8 +3,10 @@ import ctypes
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
+import sys
+import os
 import platform
-
+import logging as _logging
 
 # Fix for PyCharm hints warnings
 WindowUtils = cef.WindowUtils()
@@ -14,39 +16,40 @@ WINDOWS = (platform.system() == "Windows")
 LINUX = (platform.system() == "Linux")
 MAC = (platform.system() == "Darwin")
 
+# Globals
+logger = _logging.getLogger("tkinter_.py")
 
 # Constants
 # Tk 8.5 doesn't support png images
 IMAGE_EXT = ".png" if tk.TkVersion > 8.5 else ".gif"
+
+
     
 def main():
+    def on_configure(self):
+        logger.debug("MainFrame.on_configure")
+        if browser_frame:
+            width = self.width
+            height = self.height
+            browser_frame.on_mainframe_configure(width, height)
+
+    
     win = Tk()
     cef.Initialize()
 
     win.minsize(600,600)
-    win.grid_columnconfigure((0,1), weight=1)
-    win.grid_rowconfigure(1, weight=1)
+    win.grid_columnconfigure(0, weight=1)
+    win.grid_rowconfigure(0, weight=1)
 
     #Create Frame
     frame = ttk.Frame(win)
-    frame.grid(row=1, column=0, sticky=('NSWE'))
-    # That will call the function to change the browser size
+    frame.grid(row=0, column=0, sticky=('NSWE'))
+    frame.bind("<Configure>", on_configure)
 
     # Create Browser Frame
     browser_frame = BrowserFrame(frame)
     browser_frame.pack(fill=tk.BOTH, expand=tk.YES)
-    #browser_frame.browser.Reload()
 
-    #Create a Button
-    bt = ttk.Button(win, text="Hi").grid(row=1, column=1, sticky=('NSWE'))
-
-    #Create a Label
-    lbl = ttk.Label(win, text="Its working Perfectly Thanks").grid(row=0, column=0, sticky=('WE'))
-
-    lbl1 = ttk.Entry(win)
-    lbl1.grid(row=2, column=0, sticky=('WE'))
-    lbl2 = ttk.Entry(win)
-    lbl2.grid(row=3, column=0, sticky=('WE'))
     win.mainloop()
     cef.Shutdown()
 
@@ -70,7 +73,7 @@ class BrowserFrame(tk.Frame):
         rect = [0, 0, self.winfo_width(), self.winfo_height()]
         window_info.SetAsChild(self.get_window_handle(), rect)
         self.browser = cef.CreateBrowserSync(window_info,
-                                             url="file:///C:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculo.html")
+                                             url="https://www.google.com/")
         assert self.browser
         self.browser.SetClientHandler(LifespanHandler(self))
         self.browser.SetClientHandler(LoadHandler(self))
@@ -115,11 +118,8 @@ class BrowserFrame(tk.Frame):
         cef.MessageLoopWork()
         self.after(10, self.message_loop_work)
 
-    # Ativa o resize
     def on_configure(self, _):
-        if self.browser:
-            self.on_mainframe_configure(_.width, _.height)
-        else:
+        if not self.browser:
             self.embed_browser()
 
     def on_root_configure(self):

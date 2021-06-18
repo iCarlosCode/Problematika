@@ -60,3 +60,158 @@ AttributeError: 'NoneType' object has no attribute 'LoadUrl'
     LoadUrl('file:///C:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculo.html')
 NameError: name 'LoadUrl' is not defined
 
+
+[2021-06-17 22:42:38] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 398, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 66, in main
+    app.mainloop()
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1283, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1700, in __call__
+    def __call__(self, *args):
+KeyboardInterrupt
+
+
+[2021-06-17 22:48:11] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 398, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 66, in main
+    app.mainloop()
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1283, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1700, in __call__
+    def __call__(self, *args):
+KeyboardInterrupt
+
+
+[2021-06-17 22:48:40] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 398, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 66, in main
+    app.mainloop()
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1283, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1700, in __call__
+    def __call__(self, *args):
+KeyboardInterrupt
+
+
+[2021-06-17 22:55:25] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 401, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 66, in main
+    app.mainloop()
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1283, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1700, in __call__
+    def __call__(self, *args):
+KeyboardInterrupt
+
+
+[2021-06-17 23:02:53] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 401, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 66, in main
+    app.mainloop()
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1283, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1700, in __call__
+    def __call__(self, *args):
+KeyboardInterrupt
+
+
+[2021-06-17 23:16:42] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 401, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 66, in main
+    app.mainloop()
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1283, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1700, in __call__
+    def __call__(self, *args):
+KeyboardInterrupt
+
+
+[2021-06-17 23:17:10] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 401, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 66, in main
+    app.mainloop()
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1283, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1700, in __call__
+    def __call__(self, *args):
+KeyboardInterrupt
+
+
+[2021-06-17 23:18:36] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 402, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 66, in main
+    app.mainloop()
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1283, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1700, in __call__
+    def __call__(self, *args):
+KeyboardInterrupt
+
+
+[2021-06-17 23:56:09] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 403, in <module>
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 66, in main
+    app.mainloop()
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1283, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1700, in __call__
+    def __call__(self, *args):
+KeyboardInterrupt
+
+
+[2021-06-17 23:58:28] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 403, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 66, in main
+    app.mainloop()
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1283, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1700, in __call__
+    def __call__(self, *args):
+KeyboardInterrupt
+
+
+[2021-06-17 23:58:47] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 402, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 66, in main
+    app.mainloop()
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1283, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1700, in __call__
+    def __call__(self, *args):
+KeyboardInterrupt
+
+
+[2021-06-18 00:00:14] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 402, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 66, in main
+    app.mainloop()
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1283, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1700, in __call__
+    def __call__(self, *args):
+KeyboardInterrupt
+
+
+[2021-06-18 00:02:22] Traceback (most recent call last):
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 402, in <module>
+    main()
+  File "c:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculator/cef_sp.py", line 66, in main
+    app.mainloop()
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1283, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Users\pcarl\AppData\Local\Programs\Python\Python37\lib\tkinter\__init__.py", line 1700, in __call__
+    def __call__(self, *args):
+KeyboardInterrupt
+

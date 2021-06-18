@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 import platform
+import logging as _logging
 
 
 # Fix for PyCharm hints warnings
@@ -14,18 +15,40 @@ WINDOWS = (platform.system() == "Windows")
 LINUX = (platform.system() == "Linux")
 MAC = (platform.system() == "Darwin")
 
+# Globals
+logger = _logging.getLogger("tkinter_.py")
 
 # Constants
 # Tk 8.5 doesn't support png images
 IMAGE_EXT = ".png" if tk.TkVersion > 8.5 else ".gif"
+
     
 def main():
+    def go_back():
+        browser_frame.browser.GoBack()
+
+    def go_forward():
+        browser_frame.browser.GoForward()
+
+    def reload():
+        browser_frame.browser.Reload()
+
+    def set_url(self, url):
+        self.url_entry.delete(0, tk.END)
+        self.url_entry.insert(0, url)
+
+
+    def on_button1(self):
+        """For focus problems see Issue #255 and Issue #535. """
+        logger.debug("NavigationBar.on_button1")
+        win.focus_force()
+
     win = Tk()
     cef.Initialize()
 
     win.minsize(600,600)
     win.grid_columnconfigure((0,1), weight=1)
-    win.grid_rowconfigure(1, weight=1)
+    win.grid_rowconfigure((1,2,3), weight=1)
 
     #Create Frame
     frame = ttk.Frame(win)
@@ -35,21 +58,22 @@ def main():
     # Create Browser Frame
     browser_frame = BrowserFrame(frame)
     browser_frame.pack(fill=tk.BOTH, expand=tk.YES)
-    #browser_frame.browser.Reload()
 
     #Create a Button
-    bt = ttk.Button(win, text="Hi").grid(row=1, column=1, sticky=('NSWE'))
+    bt = ttk.Button(win, text="Hi", command=go_back).grid(row=1, column=1, sticky=('NSWE'))
+    bt1 = ttk.Button(win, text="Hi", command=go_forward).grid(row=2, column=1, sticky=('NSWE'))
+    bt2 = ttk.Button(win, text="Hi", command=reload).grid(row=3, column=1, sticky=('NSWE'))
 
     #Create a Label
     lbl = ttk.Label(win, text="Its working Perfectly Thanks").grid(row=0, column=0, sticky=('WE'))
 
     lbl1 = ttk.Entry(win)
     lbl1.grid(row=2, column=0, sticky=('WE'))
+    lbl1.bind("<Button-1>", on_button1)
     lbl2 = ttk.Entry(win)
     lbl2.grid(row=3, column=0, sticky=('WE'))
     win.mainloop()
     cef.Shutdown()
-
 
 class BrowserFrame(tk.Frame):
 
@@ -70,11 +94,10 @@ class BrowserFrame(tk.Frame):
         rect = [0, 0, self.winfo_width(), self.winfo_height()]
         window_info.SetAsChild(self.get_window_handle(), rect)
         self.browser = cef.CreateBrowserSync(window_info,
-                                             url="file:///C:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculo.html")
+                                             url="https://www.google.com.br")#"file:///C:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculo.html")
         assert self.browser
-        self.browser.SetClientHandler(LifespanHandler(self))
         self.browser.SetClientHandler(LoadHandler(self))
-        self.browser.SetClientHandler(FocusHandler(self))
+        #self.browser.SetClientHandler(FocusHandler(self))
         self.message_loop_work()
 
     def get_window_handle(self):
@@ -148,41 +171,17 @@ class BrowserFrame(tk.Frame):
         if LINUX and self.browser:
             self.browser.SetFocus(False)
 
-    def on_root_close(self):
-        logger.info("BrowserFrame.on_root_close")
-        if self.browser:
-            logger.debug("CloseBrowser")
-            self.browser.CloseBrowser(True)
-            self.clear_browser_references()
-        else:
-            logger.debug("tk.Frame.destroy")
-            self.destroy()
-            
 
-    def clear_browser_references(self):
-        # Clear browser references that you keep anywhere in your
-        # code. All references must be cleared for CEF to shutdown cleanly.
-        self.browser = None
-
-
-class LifespanHandler(object):
-
-    def __init__(self, tkFrame):
-        self.tkFrame = tkFrame
-
-    def OnBeforeClose(self, browser, **_):
-        logger.debug("LifespanHandler.OnBeforeClose")
-        self.tkFrame.quit()
-
-
+# FAZ O LINK APARECER
 class LoadHandler(object):
 
     def __init__(self, browser_frame):
         self.browser_frame = browser_frame
 
     def OnLoadStart(self, browser, **_):
-        if self.browser_frame.master.navigation_bar:
-            self.browser_frame.master.navigation_bar.set_url(browser.GetUrl())
+        pass
+        #if self.browser_frame.master.navigation_bar:
+        #    self.browser_frame.master.navigation_bar.set_url(browser.GetUrl())
 
 
 class FocusHandler(object):
@@ -207,6 +206,7 @@ class FocusHandler(object):
         logger.debug("FocusHandler.OnGotFocus")
         if LINUX:
             self.browser_frame.focus_set()
+
 
 
 if __name__ == '__main__':
