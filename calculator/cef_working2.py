@@ -42,19 +42,18 @@ def main():
     win.grid_columnconfigure((0,1), weight=1)
     win.grid_rowconfigure((1,2,3), weight=1)
 
+    # Focus problems solved
+    win.bind("<Button-1>", lambda event: event.widget.focus_force())
+
     #Create Frame
     frame = ttk.Frame(win)
     frame.grid(row=1, column=0, sticky=('NSWE'))
 
     ff = ttk.Frame(win)
     ff.grid(row=2, column=0, sticky=('WE'))
-    lblurl = tk.StringVar(value='www.jw.org')
+    lblurl = tk.StringVar(value="file:///calculo.html")
     lbl1 = ttk.Entry(ff, textvariable=lblurl)
     lbl1.grid(row=2, column=0, sticky=('WE'))
-    
-
-    # setar foco
-    lbl1.bind("<Button-1>", lambda event: event.widget.focus_force())
     lbl1.bind("<Return>", load)
     
 
@@ -97,7 +96,7 @@ class BrowserFrame(tk.Frame):
         rect = [0, 0, self.winfo_width(), self.winfo_height()]
         window_info.SetAsChild(self.get_window_handle(), rect)
         self.browser = cef.CreateBrowserSync(window_info,
-                                             url=self.entry_url_var if self.entry_url_var else "https://www.google.com.br")#"file:///C:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculo.html")
+                                             url=self.entry_url_var.get() if self.entry_url_var else "https://www.google.com.br")#"file:///C:/Users/pcarl/Dropbox/iCarlosCode/Problematika/calculo.html")
         assert self.browser
         self.browser.SetClientHandler(LoadHandler(self))
         #self.browser.SetClientHandler(FocusHandler(self))

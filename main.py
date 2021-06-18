@@ -9,8 +9,10 @@ win = Tk()
 cef.Initialize()
 
 win.minsize(600,600)
-win.grid_columnconfigure((0,1), weight=1)
+win.grid_columnconfigure((0,1), weight=1, uniform='uniform')
 win.grid_rowconfigure(0, weight=1)
+win.bind("<Button-1>", lambda event: event.widget.focus_force())
+
 
 #Create Tab Control
 tab_control = ttk.Notebook(win)
@@ -32,7 +34,7 @@ frame.grid_rowconfigure(0, weight=1)
 
 # Create Browser Frame
 lblurl = tk.StringVar(value='file:///calculo.html')
-browser_frame = BrowserFrame(frame)
+browser_frame = BrowserFrame(frame, entry_url_var=lblurl)
 browser_frame.pack(fill=tk.BOTH, expand=tk.YES)
 
 
