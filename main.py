@@ -9,7 +9,8 @@ win = Tk()
 cef.Initialize()
 
 win.minsize(600,600)
-win.grid_columnconfigure((0,1), weight=1, uniform='uniform')
+win.grid_columnconfigure(0, weight=2, uniform='uniform')
+win.grid_columnconfigure(1, weight=1, uniform='uniform')
 win.grid_rowconfigure(0, weight=1)
 win.bind("<Button-1>", lambda event: event.widget.focus_force())
 
@@ -26,9 +27,11 @@ produto_vetorial.criarTab(tab_control)
 produto_misto.criarTab(tab_control)
 
 #Create Frame
-frame = ttk.Frame(win)
+frame = ttk.LabelFrame(win, text='Calculo Passo a Passo')
+
+print()
 frame.grid(row=0, column=1, sticky=('NSWE'))
-frame.grid_columnconfigure((0,1), weight=1)
+frame.grid_columnconfigure(0, weight=1)
 frame.grid_rowconfigure(0, weight=1)
 
 

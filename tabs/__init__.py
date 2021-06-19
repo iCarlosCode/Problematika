@@ -5,6 +5,23 @@ from cefpython3 import cefpython as cef
 import ctypes
 
 
+def criarLinhaDeResultado(master, row = 0):
+    r = dict()
+    r['resultado'] = tk.StringVar()
+
+    r['label'] = ttk.LabelFrame(master, text = 'Resultado:')
+    r['label'].grid(columnspan = 3, column = 0, row = row, sticky='EW')
+    r['label'].grid_columnconfigure(0, weight=1)
+
+    r['entry'] = ttk.Entry(r['label'], width = 15, textvariable = r['resultado'])
+    r['entry'].grid(sticky='EW')
+    r['entry'].config(font=('arial', 20, 'bold'))
+    r['entry'].config(state='readonly', background = r['entry'].cget('background'))
+    
+    return (r)
+
+
+
 def criarLinhaDeCoordenadas(master, row = 0):
     linha = dict()
     eixos = ('x','y','z')
