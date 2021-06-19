@@ -3,13 +3,13 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 
-def criarLinhaDeBotões(start,end):
-    row = list()
+def criarLinhaDeBotões(master, row,start,end):
+    r = list()
     
-    for j,f in enumerate(tuple(range(start, end+1))):
-        row.append(ttk.Button(frame, text=f'{f}'))
-        row[j].grid(row = 0, column=j)
-    teclado.append(row)
+    for i,n in enumerate(tuple(range(start, end+1))):
+        r.append(ttk.Button(master, text=f'{n}'))
+        r[i].grid(row = row, column=i, sticky=('NSWE'))
+    teclado.append(r)
 
 win = Tk()
 
@@ -22,11 +22,13 @@ win.grid_rowconfigure(0, weight=1)
 #Create Frame
 frame = ttk.Frame(win)
 frame.grid(row=0, column=0, sticky=('NSWE'))
-frame.grid_columnconfigure(0, weight=1)
-frame.grid_rowconfigure(0, weight=1)
+frame.grid_columnconfigure((0,1,2), weight=1)
+frame.grid_rowconfigure((0,1,2), weight=1)
 teclado = list()
 
-criarLinhaDeBotões(4, 6)
+teclado.append(criarLinhaDeBotões(frame, 0, 7, 9))
+teclado.append(criarLinhaDeBotões(frame, 1, 4, 6))
+teclado.append(criarLinhaDeBotões(frame, 2, 1, 3))
 
 '''
 for i in range(10, 0):
