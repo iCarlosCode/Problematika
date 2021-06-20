@@ -24,6 +24,8 @@ def criarTab(tab_control):
     lbl_font = ('arial', 11, 'bold')
 
     padrao = ttk.Frame(tab_control)
+    padrao.grid(sticky='NSEW')
+    padrao.rowconfigure((0, 1, 2, 3, 4, 5, 6),weight=1)
     tab_control.add(padrao, text='Padrão')
 
     #LINHA 0
@@ -48,8 +50,9 @@ def criarTab(tab_control):
     modos_cb.grid(column = 1, row = 5, columnspan = 2, sticky='WE')
 
     #LINHA 6
-    btn_calcular = ttk.Button(padrao, text='Calcular', command=calcular)
-    btn_calcular.grid(columnspan = 3, row = 6, sticky='EW')
+    linhas.append(criarBotãoCalcular(padrao, 6, calcular))
+    #btn_calcular = ttk.Button(padrao, text='Calcular', command=calcular)
+    #btn_calcular.grid(columnspan = 3, row = 6, sticky='NSEW')
     
 
     #ptohtml()

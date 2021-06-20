@@ -5,6 +5,23 @@ from cefpython3 import cefpython as cef
 import ctypes
 
 
+def criarLinhaDeBotões(master, row, items):
+    r = list()
+    for i,n in enumerate(items):
+        r.append(ttk.Button(master, text=f'{n}', style='my.TButton', takefocus=False))
+        r[i].grid(row = row, column=i, sticky=('NSWE'))
+    return r
+
+def criarBotãoCalcular(master, row, command):
+    S = ttk.Style()
+    S.configure('me.TButton', font=('arial', 12, 'bold'))
+    
+    btn_calcular = ttk.Button(master, text='Calcular', command=command, style='me.TButton')
+    btn_calcular.grid(columnspan = 3, row = row, sticky='NSEW')
+
+    return btn_calcular
+
+
 def criarLinhaDeResultado(master, row = 0):
     r = dict()
     r['resultado'] = tk.StringVar()

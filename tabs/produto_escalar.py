@@ -12,6 +12,8 @@ def criarTab(tab_control):
     lbl_font = ('arial', 11, 'bold')
 
     produto_escalar = ttk.Frame(tab_control)
+    produto_escalar.grid(sticky='NSEW')
+    produto_escalar.rowconfigure((0, 1, 2, 3, 4, 5),weight=1)
     tab_control.add(produto_escalar, text='Produto Escalar')
 
     #LINHA 0
@@ -25,8 +27,8 @@ def criarTab(tab_control):
     #LINHA 4
     linhas.append(criarLinhaDeCoordenadas(produto_escalar, row = 4))
     #LINHA 5
-    btn_calcular = ttk.Button(produto_escalar, text='Calcular', command=calcular)
-    btn_calcular.grid(columnspan = 3, row = 5, sticky='EW')
+    linhas.append(criarBotãoCalcular(produto_escalar, 5, calcular))
+
     
 
 

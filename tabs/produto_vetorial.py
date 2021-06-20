@@ -12,6 +12,10 @@ def criarTab(tab_control):
     lbl_font = ('arial', 11, 'bold')
 
     produto_vetorial = ttk.Frame(tab_control)
+    produto_vetorial.grid(sticky='NSEW')
+    produto_vetorial.columnconfigure((0,1,2), weight=1)
+    produto_vetorial.rowconfigure((0,1,2,3,4, 5), weight=1)
+
     tab_control.add(produto_vetorial, text='Produto Vetorial')
     
     #LINHA 0
@@ -25,8 +29,7 @@ def criarTab(tab_control):
     #LINHA 4
     linhas.append(criarLinhaDeCoordenadas(produto_vetorial, row = 4))
     #LINHA 5
-    btn_calcular = ttk.Button(produto_vetorial, text='Calcular', command=calcular)
-    btn_calcular.grid(columnspan = 3, row = 5, sticky='EW')
+    linhas.append(criarBotãoCalcular(produto_vetorial, 5, calcular))
 
 
 
