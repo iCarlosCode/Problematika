@@ -3,13 +3,16 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 
-def criarLinhaDeBotões(master, row,start,end):
+def criarLinhaDeBotões(master, row, items):
     r = list()
     
-    for i,n in enumerate(tuple(range(start, end+1))):
+    for i,n in enumerate(items):
         r.append(ttk.Button(master, text=f'{n}'))
         r[i].grid(row = row, column=i, sticky=('NSWE'))
-    teclado.append(r)
+    return r
+
+def commando(self):
+    print(self)
 
 win = Tk()
 
@@ -23,12 +26,18 @@ win.grid_rowconfigure(0, weight=1)
 frame = ttk.Frame(win)
 frame.grid(row=0, column=0, sticky=('NSWE'))
 frame.grid_columnconfigure((0,1,2), weight=1)
-frame.grid_rowconfigure((0,1,2), weight=1)
+frame.grid_rowconfigure((0,1,2,3), weight=1)
 teclado = list()
 
-teclado.append(criarLinhaDeBotões(frame, 0, 7, 9))
-teclado.append(criarLinhaDeBotões(frame, 1, 4, 6))
-teclado.append(criarLinhaDeBotões(frame, 2, 1, 3))
+teclado.append(criarLinhaDeBotões(frame, 0, (7, 8, 9, 'C')))
+teclado.append(criarLinhaDeBotões(frame, 1, (4, 5, 6, '+')))
+teclado.append(criarLinhaDeBotões(frame, 2, (1, 2, 3, '-')))
+teclado.append(ttk.Button(frame, text=f'0'))
+teclado[3].grid(row = 3, column=0, columnspan=4, sticky=('NSWE'))
+
+print(teclado[1][0].cget('text'))
+
+
 
 '''
 for i in range(10, 0):

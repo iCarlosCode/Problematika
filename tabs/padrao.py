@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from webbrowser import open_new_tab
 
-from tabs import *
+from . import *
 from calculator.operations import calcularSoma, calcularSubtração, obterVetorDePontos
 
 """import os
