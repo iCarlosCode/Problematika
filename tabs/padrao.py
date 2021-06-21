@@ -1,3 +1,4 @@
+from calculator.gerar_calc import gerar_calculo_formar_vetores, gerar_calculo_soma, gerar_calculo_subtração
 from tkinter import *
 from tkinter import ttk
 from webbrowser import open_new_tab
@@ -51,9 +52,6 @@ def criarTab(tab_control):
 
     #LINHA 6
     linhas.append(criarBotãoCalcular(padrao, 6, calcular))
-    #btn_calcular = ttk.Button(padrao, text='Calcular', command=calcular)
-    #btn_calcular.grid(columnspan = 3, row = 6, sticky='NSEW')
-    
 
     #ptohtml()
     #open_new_tab(f'{os.getcwd()}\calculo.html')
@@ -66,11 +64,15 @@ def calcular():
     print(a,b)
     if(modo.get() == modos[0]):
         linhas[0]['resultado'].set(f'{obterVetorDePontos(a, b)}')
+        gerar_calculo_formar_vetores(a, b)
+        
     elif(modo.get() == modos[1]):
         linhas[0]['resultado'].set(f'{calcularSoma(a, b)}')
+        gerar_calculo_soma(a, b)
     elif(modo.get() == modos[2]):
         linhas[0]['resultado'].set(f'{calcularSubtração(a, b)}')
-
+        gerar_calculo_subtração(a, b)
+    
 
 if __name__ == '__main__':
     win = Tk()
