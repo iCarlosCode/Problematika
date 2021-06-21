@@ -20,7 +20,8 @@ def ptohtml():
 
 def criarTab(tab_control):
     global linhas, lbl_resultado, modo, modos
-
+#maybe dar pra fazer reload
+    print(Tk._root(tab_control).chidren)
     linhas = list()
     lbl_font = ('arial', 11, 'bold')
 
