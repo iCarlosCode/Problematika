@@ -13,6 +13,52 @@ from tabs import (
 from cefpython3 import cefpython as cef
 
 
+def main():
+    global browser_frame
+
+    win = Tk()
+    cef.Initialize()
+    last_entry = ttk.Entry()
+
+    win.minsize(750, 620)
+    win.wm_geometry("750x620")
+    win.grid_columnconfigure(0, weight=2, uniform="uniform")
+    win.grid_columnconfigure(1, weight=1, uniform="uniform")
+    win.grid_rowconfigure(0, weight=5, uniform="uniform")
+    win.grid_rowconfigure(1, weight=4, uniform="uniform")
+    win.bind("<Button-1>", lambda event: event.widget.focus_force())
+    win.bind_class("TEntry", "<FocusIn>", le)
+    # Create Tab Control
+    tab_control = ttk.Notebook(win)
+    tab_control.grid(sticky="NSEW")
+
+    # Create Tabs
+    padrao.criarTab(tab_control)
+    produto_escalar.criarTab(tab_control)
+    produto_vetorial.criarTab(tab_control)
+    produto_misto.criarTab(tab_control)
+    sobre.criarTab(tab_control)
+
+    # Create Frame
+    frame = ttk.LabelFrame(win, text="Calculo Passo a Passo")
+    frame.grid(row=0, column=1, rowspan=2, sticky=("NSWE"))
+    frame.grid_columnconfigure(0, weight=1)
+    frame.grid_rowconfigure(0, weight=1)
+
+    # Create Browser Frame
+    lblurl = tk.StringVar(value="file:///calculo1.html")
+    browser_frame = BrowserFrame(frame, entry_url_var=lblurl)
+    browser_frame.pack(fill=tk.BOTH, expand=tk.YES)
+
+    # Create Keyboard
+    teclado_fr = ttk.Frame(win)
+    teclado_fr.grid(row=1, column=0, sticky=("NSWE"))
+    teclado = criarTeclado(teclado_fr)
+
+    win.mainloop()
+    cef.Shutdown()
+
+
 def load(e):
     global browser_frame
     browser_frame.browser.Reload()
@@ -95,46 +141,5 @@ def le(e):
     last_entry = e.widget
 
 
-win = Tk()
-cef.Initialize()
-last_entry = ttk.Entry()
-
-win.minsize(750, 620)
-win.wm_geometry("750x620")
-win.grid_columnconfigure(0, weight=2, uniform="uniform")
-win.grid_columnconfigure(1, weight=1, uniform="uniform")
-win.grid_rowconfigure(0, weight=5, uniform="uniform")
-win.grid_rowconfigure(1, weight=4, uniform="uniform")
-win.bind("<Button-1>", lambda event: event.widget.focus_force())
-win.bind_class("TEntry", "<FocusIn>", le)
-win.bind_class("TButton", "<FocusIn>", load)  # armengue para recarregar a página
-# Create Tab Control
-tab_control = ttk.Notebook(win)
-tab_control.grid(sticky="NSEW")
-
-# Create Tabs
-padrao.criarTab(tab_control)
-produto_escalar.criarTab(tab_control)
-produto_vetorial.criarTab(tab_control)
-produto_misto.criarTab(tab_control)
-sobre.criarTab(tab_control)
-
-# Create Frame
-frame = ttk.LabelFrame(win, text="Calculo Passo a Passo")
-frame.grid(row=0, column=1, rowspan=2, sticky=("NSWE"))
-frame.grid_columnconfigure(0, weight=1)
-frame.grid_rowconfigure(0, weight=1)
-
-# Create Browser Frame
-lblurl = tk.StringVar(value="file:///calculo1.html")
-browser_frame = BrowserFrame(frame, entry_url_var=lblurl)
-browser_frame.pack(fill=tk.BOTH, expand=tk.YES)
-
-# Create Keyboard
-teclado_fr = ttk.Frame(win)
-teclado_fr.grid(row=1, column=0, sticky=("NSWE"))
-teclado = criarTeclado(teclado_fr)
-
-
-win.mainloop()
-cef.Shutdown()
+if __name__ == "__main__":
+    main()

@@ -1,3 +1,4 @@
+from calculator.gerar_calc import gerar_calculo_produto_vetorial
 from tkinter import *
 from tkinter import ttk
 
@@ -29,14 +30,18 @@ def criarTab(tab_control):
     #LINHA 4
     linhas.append(criarLinhaDeCoordenadas(produto_vetorial, row = 4))
     #LINHA 5
-    linhas.append(criarBotãoCalcular(produto_vetorial, 5, calcular))
+    linhas.append(criarBotãoCalcular(produto_vetorial, 5, lambda: calcular(tab_control)))
 
 
 
-def calcular():
+def calcular(widget):
     v = obterVetor(linhas[2])
     u = obterVetor(linhas[4])
     linhas[0]['resultado'].set(f'{calcularProdutoVetorial(v, u)}')
+    gerar_calculo_produto_vetorial(v, u)
+
+    # Reload the browser after generating the calc
+    Tk._root(widget).winfo_children()[2].winfo_children()[0].browser.Reload()
 
 if __name__ == '__main__':
     win = Tk()
