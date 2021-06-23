@@ -39,7 +39,7 @@ def calcular(widget):
     u = obterVetor(linhas[4])
     w = obterVetor(linhas[6])
     linhas[0]['resultado'].set(f'{calcularProdutoMisto(v, u, w)}')
-    gerar_calculo_produto_misto(u, v, w)
+    gerar_calculo_produto_misto(v, u, w)
 
     # Reload the browser after generating the calc
     Tk._root(widget).winfo_children()[2].winfo_children()[0].browser.Reload()

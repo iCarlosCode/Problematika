@@ -57,12 +57,12 @@ Temos:
 def gerar_calculo_formar_vetores(v=(0, 0, 0), u=(0, 0, 0)):
     text = (
         HTML_BASE
-        + f"""Para formar um vetor \(\\overrightarrow{{AB}}=(a, b, c)\) com os pontos \(A(x_a, y_a, z_a)\) e \(B(x_b, y_b, z_b)\), podemos usar a fórmula: \[\\overrightarrow{{AB}}= “B-A” \\\\ \\overrightarrow{{AB}}= (x_b, y_b, z_b) - (x_a, y_a, z_a) \\\\ \\overrightarrow{{AB}}= (x_b - x_a, y_b - y_a, z_b - z_a)\].
-<br>Sendo \(A({v[0]}, {v[1]}, {v[2]})\) e \(B({u[0]}, {u[1]}, {u[2]})\).
+        + f"""Para formar um vetor \(\\overrightarrow{{AB}}=(a, b, c)\) com os pontos \(\\color{{teal}}{{A(x_a, y_a, z_a)}}\) e \(\\color{{#A80}}{{B(x_b, y_b, z_b)}}\), podemos usar a fórmula: \[\\overrightarrow{{AB}}= “\\color{{#A80}}{{B}}-\\color{{teal}}{{A}}” \\\\ \\overrightarrow{{AB}}= \\color{{#A80}}{{(x_b, y_b, z_b)}} - \\color{{teal}}{{(x_a, y_a, z_a)}} \\\\ \\overrightarrow{{AB}}= (\\color{{#A80}}{{x_b}} - \\color{{teal}}{{x_a}}, \\color{{#A80}}{{y_b}} - \\color{{teal}}{{y_a}}, \\color{{#A80}}{{z_b}} - \\color{{teal}}{{z_a}})\].
+<br>Sendo \(\\color{{teal}}{{A({v[0]}, {v[1]}, {v[2]})}}\) e \(\\color{{#A80}}{{B({u[0]}, {u[1]}, {u[2]})}}\).
 Temos:
-\(\\overrightarrow{{AB}}= “B-A”\)
-\(\\overrightarrow{{AB}}= B({u[0]}, {u[1]}, {u[2]})- A({v[0]}, {v[1]}, {v[2]})\)
-\(\\overrightarrow{{AB}}= ({u[0]} - ({v[0]}), {u[1]} - ({v[1]}), {u[2]} - ({v[2]}))\)
+\(\\overrightarrow{{AB}}= “\\color{{#A80}}{{B}}-\\color{{teal}}{{A}}”\)
+\(\\overrightarrow{{AB}}= \\color{{#A80}}{{B({u[0]}, {u[1]}, {u[2]})}}- \\color{{teal}}{{A({v[0]}, {v[1]}, {v[2]})}}\)
+\(\\overrightarrow{{AB}}= (\\color{{#A80}}{{{u[0]}}} - \\color{{teal}}{{({v[0]})}}, \\color{{#A80}}{{{u[1]}}} - \\color{{teal}}{{({v[1]})}}, \\color{{#A80}}{{{u[2]}}} - \\color{{teal}}{{({v[2]})}})\)
 \(\\overrightarrow{{AB}}= ({u[0] - v[0]}, {u[1] - v[1]}, {u[2] - v[2]})\)
 </body>
 </html>"""
@@ -205,13 +205,132 @@ Assim o resultado do produto vetorial é:<br>
 def gerar_calculo_produto_misto(v=(0, 0, 0), u=(0, 0, 0), w=(0, 0, 0)):
     text = (
         HTML_BASE
-        + f"""Para 
-        
-        Para subtrair dois vetores \(\\vec v=(a, b, c)\) e \(\\vec u=(d, e, f)\), podemos usar a fórmula: \(\\vec v + \\vec u = (a + d, b + e, c + f)\).
-<br>Sendo \(\\vec v=({v[0]}, {v[1]}, {v[2]})\) e \(\\vec u=({u[0]}, {u[1]}, {u[2]})\).
-Temos:
-    \(\\vec v + \\vec u = ({v[0]} + {u[0]}, {v[1]} + {u[1]}, {v[2]} + {u[2]})\).<br>
-    \(\\vec v + \\vec u = ({v[0]+u[0]}, {v[1]+u[1]}, {v[2]+u[2]})\).
+        + f"""Para calcular o produto misto de três vetores \(\\color{{teal}}{{\\vec a=(x_a, y_a, z_a)}}\), \(\\color{{#A80}}{{\\vec b=(x_b, y_b, z_b)}}\), \(\\color{{#080}}{{\\vec c=(x_c, y_c, z_c)}}\). Vamos ver resolver o determinante:<br>
+        1. Colocamos as coordenadas do vetor \(\\color{{teal}}{{\\vec a=(x_a, y_a, z_a)}}\) na primeira linha do determinante.<br>
+        2. Colocamos as coordenadas do vetor \(\\color{{#A80}}{{\\vec b=(x_b, y_b, z_b)}}\) na segunda linha do determinante.<br>
+        3. Colocamos as coordenadas do vetor \(\\color{{#080}}{{\\vec c=(x_c, y_c, z_c)}}\) na terceira linha do determinante.<br>
+
+        Assim, o determinante fica:
+        \[
+          \\begin{{vmatrix}}
+          \\color{{teal}}{{x_a}} & \\color{{teal}}{{y_a}} & \\color{{teal}}{{z_a}} \\\\
+          \\color{{#A80}}{{x_b}} & \\color{{#A80}}{{y_b}} & \\color{{#A80}}{{z_b}} \\\\
+          \\color{{#080}}{{x_c}} & \\color{{#080}}{{y_c}} & \\color{{#080}}{{z_c}}
+          \\end{{vmatrix}}
+          \]
+Para obter o valor do produto misto, \(\\left |\\left [\\color{{teal}}{{\\vec a}}, \\color{{#A80}}{{\\vec b}}, \\color{{#080}}{{\\vec c}}\\right ]\\right |\) é só calcular o determinante.<br>
+Sendo \(\\color{{teal}}{{\\vec a=({v[0]}, {v[1]}, {v[2]})}}\), \(\\color{{#A80}}{{\\vec b=({u[0]}, {u[1]}, {u[2]})}}\) e \(\\color{{#080}}{{\\vec c=({w[0]}, {w[1]}, {w[2]})}}\).<br>
+O determinante fica:
+        \[
+          \\begin{{vmatrix}}{{}}
+          \\color{{teal}}{{{v[0]}}} & \\color{{teal}}{{{v[1]}}} & \\color{{teal}}{{{v[2]}}} \\\\
+          \\color{{#A80}}{{{u[0]}}} & \\color{{#A80}}{{{u[1]}}} & \\color{{#A80}}{{{u[2]}}} \\\\
+          \\color{{#080}}{{{w[0]}}} & \\color{{#080}}{{{w[1]}}} & \\color{{#080}}{{{w[2]}}} 
+          \\end{{vmatrix}}
+          \]
+Vamos resolver o determinante:<br>
+1. Multiplicamos todos os itens na diagonal pintada de azul e adicionamos a conta:<br>
+\(\\left |\\left [\\color{{teal}}{{\\vec a}}, \\color{{#A80}}{{\\vec b}}, \\color{{#080}}{{\\vec c}}\\right ]\\right | = \\color{{#00F}}{{({v[0]*u[1]*w[2]})}}\)<br>
+\[
+  \\begin{{vmatrix}}{{}}
+  \\color{{#00F}}{{{v[0]}}} & \\color{{teal}}{{{v[1]}}} & \\color{{teal}}{{{v[2]}}} \\\\
+  \\color{{#A80}}{{{u[0]}}} & \\color{{#00F}}{{{u[1]}}} & \\color{{#A80}}{{{u[2]}}} \\\\
+  \\color{{#080}}{{{w[0]}}} & \\color{{#080}}{{{w[1]}}} & \\color{{#00F}}{{{w[2]}}} 
+  \\end{{vmatrix}}
+  \]
+
+2. Multiplicamos todos os itens na diagonal pintada de azul e adicionamos a conta <b>subtraindo</b>:<br>
+\(\\left |\\left [\\color{{teal}}{{\\vec a}}, \\color{{#A80}}{{\\vec b}}, \\color{{#080}}{{\\vec c}}\\right ]\\right | = {v[0]*u[1]*w[2]} 
+\\color{{#00F}}{{{f'- ({v[0]*u[2]*w[1]})'}}}\)<br>
+
+\[
+  \\begin{{vmatrix}}
+  \\color{{#00F}}{{{v[0]}}} & \\color{{teal}}{{{v[1]}}} & \\color{{teal}}{{{v[2]}}} \\\\
+  \\color{{#A80}}{{{u[0]}}} & \\color{{#A80}}{{{u[1]}}} & \\color{{#00F}}{{{u[2]}}} \\\\
+  \\color{{#080}}{{{w[0]}}} & \\color{{#00F}}{{{w[1]}}} & \\color{{#080}}{{{w[2]}}} 
+  \\end{{vmatrix}}
+  \]
+3. Multiplicamos todos os itens na diagonal pintada de azul e adicionamos a conta <b>somando</b>:<br>
+\(\\left |\\left [\\color{{teal}}{{\\vec a}}, \\color{{#A80}}{{\\vec b}}, \\color{{#080}}{{\\vec c}}\\right ]\\right | = {v[0]*u[1]*w[2]} 
+{-1*v[0]*u[2]*w[1] if (-1*v[0]*u[2]*w[1]) < 0 else f'+{-1*v[0]*u[2]*w[1]}'} 
+\\color{{#00F}}{{{f'+ ({v[1]*u[2]*w[0]})'}}}\)<br>
+\[
+  \\begin{{vmatrix}}{{}}
+  \\color{{teal}}{{{v[0]}}} & \\color{{#00F}}{{{v[1]}}} & \\color{{teal}}{{{v[2]}}} \\\\
+  \\color{{#A80}}{{{u[0]}}} & \\color{{#A80}}{{{u[1]}}} & \\color{{#00F}}{{{u[2]}}} \\\\
+  \\color{{#00F}}{{{w[0]}}} & \\color{{#080}}{{{w[1]}}} & \\color{{#080}}{{{w[2]}}} 
+  \\end{{vmatrix}}
+  \]
+4. Multiplicamos todos os itens na diagonal pintada de azul e adicionamos a conta <b>subtraindo</b>:<br>
+\(\\left |\\left [\\color{{teal}}{{\\vec a}}, \\color{{#A80}}{{\\vec b}}, \\color{{#080}}{{\\vec c}}\\right ]\\right | = {v[0]*u[1]*w[2]} 
+{v[0]*u[2]*w[1] if (v[0]*u[2]*w[1]) < 0 else f'+{v[0]*u[2]*w[1]}'} 
+{v[1]*u[2]*w[0] if (v[1]*u[2]*w[0]) < 0 else f'+{v[1]*u[2]*w[0]}'} 
+\\color{{#00F}}{{{f'- ({v[1]*u[0]*w[2]})'}}}\)<br>
+\[
+  \\begin{{vmatrix}}{{}}
+  \\color{{teal}}{{{v[0]}}} & \\color{{#00F}}{{{v[1]}}} & \\color{{teal}}{{{v[2]}}} \\\\
+  \\color{{#00F}}{{{u[0]}}} & \\color{{#A80}}{{{u[1]}}} & \\color{{#A80}}{{{u[2]}}} \\\\
+  \\color{{#080}}{{{w[0]}}} & \\color{{#080}}{{{w[1]}}} & \\color{{#00F}}{{{w[2]}}} 
+  \\end{{vmatrix}}
+  \]
+
+5. Multiplicamos todos os itens na diagonal pintada de azul e adicionamos a conta <b>somando</b>:<br>
+\(\\left |\\left [\\color{{teal}}{{\\vec a}}, \\color{{#A80}}{{\\vec b}}, \\color{{#080}}{{\\vec c}}\\right ]\\right | = {v[0]*u[1]*w[2]} 
+{-1*v[0]*u[2]*w[1] if (-1*v[0]*u[2]*w[1]) < 0 else f'+{-1*v[0]*u[2]*w[1]}'} 
+{v[1]*u[2]*w[0] if (v[1]*u[2]*w[0]) < 0 else f'+{v[1]*u[2]*w[0]}'} 
+{-1*v[1]*u[0]*w[2] if (-1*v[1]*u[0]*w[2]) < 0 else f'+{-1*v[1]*u[0]*w[2]}'} 
+\\color{{#00F}}{{{f'+ ({v[2]*u[0]*w[1]})'}}}\)<br>
+\[
+  \\begin{{vmatrix}}{{}}
+  \\color{{teal}}{{{v[0]}}} & \\color{{teal}}{{{v[1]}}} & \\color{{#00F}}{{{v[2]}}} \\\\
+  \\color{{#00F}}{{{u[0]}}} & \\color{{#A80}}{{{u[1]}}} & \\color{{#A80}}{{{u[2]}}} \\\\
+  \\color{{#080}}{{{w[0]}}} & \\color{{#00F}}{{{w[1]}}} & \\color{{#080}}{{{w[2]}}} 
+  \\end{{vmatrix}}
+  \]
+6. Multiplicamos todos os itens na diagonal pintada de azul e adicionamos a conta <b>subtraindo</b>:<br>
+\(\\left |\\left [\\color{{teal}}{{\\vec a}}, \\color{{#A80}}{{\\vec b}}, \\color{{#080}}{{\\vec c}}\\right ]\\right | = {v[0]*u[1]*w[2]} 
+{-1*v[0]*u[2]*w[1] if (-1*v[0]*u[2]*w[1]) < 0 else f'+{-1*v[0]*u[2]*w[1]}'} 
+{v[1]*u[2]*w[0] if (v[1]*u[2]*w[0]) < 0 else f'+{v[1]*u[2]*w[0]}'} 
+{-1*v[1]*u[0]*w[2] if (-1*v[1]*u[0]*w[2]) < 0 else f'+{-1*v[1]*u[0]*w[2]}'} 
+{v[2]*u[0]*w[1] if (v[2]*u[0]*w[1]) < 0 else f'+{v[2]*u[0]*w[1]}'}
+\\color{{#00F}}{{{f'- ({v[2]*u[1]*w[0]})'}}} 
+\)<br>
+\[
+  \\begin{{vmatrix}}{{}}
+  \\color{{teal}}{{{v[0]}}} & \\color{{teal}}{{{v[1]}}} & \\color{{#00F}}{{{v[2]}}} \\\\
+  \\color{{#A80}}{{{u[0]}}} & \\color{{#00F}}{{{u[1]}}} & \\color{{#A80}}{{{u[2]}}} \\\\
+  \\color{{#00F}}{{{w[0]}}} & \\color{{#070}}{{{w[1]}}} & \\color{{#070}}{{{w[2]}}} 
+  \\end{{vmatrix}}
+  \]
+Então temos: <br>
+\(\\left |\\left [\\color{{teal}}{{\\vec a}}, \\color{{#A80}}{{\\vec b}}, \\color{{#080}}{{\\vec c}}\\right ]\\right | = {v[0]*u[1]*w[2]} 
+{-1*v[0]*u[2]*w[1] if (-1*v[0]*u[2]*w[1]) < 0 else f'+{-1*v[0]*u[2]*w[1]}'} 
+{v[1]*u[2]*w[0] if (v[1]*u[2]*w[0]) < 0 else f'+{v[1]*u[2]*w[0]}'} 
+{-1*v[1]*u[0]*w[2] if (-1*v[1]*u[0]*w[2]) < 0 else f'+{-1*v[1]*u[0]*w[2]}'} 
+{v[2]*u[0]*w[1] if (v[2]*u[0]*w[1]) < 0 else f'+{v[2]*u[0]*w[1]}'}
+{-1*v[2]*u[1]*w[0] if (-1*v[2]*u[1]*w[0]) < 0 else f'+{-1*v[2]*u[1]*w[0]}'} =
+{
+(v[0]*u[1]*w[2]) +
+(-1*v[0]*u[2]*w[1]) +
+(v[1]*u[2]*w[0]) +
+(-1*v[1]*u[0]*w[2]) +
+(v[2]*u[0]*w[1]) +
+(-1*v[2]*u[1]*w[0])
+}
+
+\)<br>
+Assim o resultado do produto vetorial é:<br>
+\(\\left |\\left [\\color{{teal}}{{\\vec a}}, \\color{{#A80}}{{\\vec b}}, \\color{{#080}}{{\\vec c}}\\right ]\\right | = 
+{
+(v[0]*u[1]*w[2]) +
+(-1*v[0]*u[2]*w[1]) +
+(v[1]*u[2]*w[0]) +
+(-1*v[1]*u[0]*w[2]) +
+(v[2]*u[0]*w[1]) +
+(-1*v[2]*u[1]*w[0])
+}
+\)<br>
+
 </body>
 </html>"""
     )
