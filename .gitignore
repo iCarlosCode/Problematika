@@ -4,5 +4,6 @@
 /.vscode/
 __pycache__
 /build
+/res
 build.py
 setup.py
