@@ -3,3 +3,4 @@
 *.html
 /.vscode/
 __pycache__
+/build

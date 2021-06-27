@@ -8,8 +8,16 @@ HTML_BASE = """<!DOCTYPE html>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\(','\\\)']]}});
 </script>
-<script type="text/javascript" async src="mathjax2/MathJax.js?config=TeX-AMS_CHTML"></script>
-
+<script type="text/javascript" async src="mathjax2/MathJax.js?config=TeX-AMS_CHTML"
+onerror=onError()></script>
+<script>
+  function onError() {
+  var script = document.createElement('script');
+  script.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML";
+  script.async = true;
+  document.head.appendChild(script); 
+}
+</script>
 <!--
   <script type="text/javascript" async src="mathjax2/MathJax.js?config=TeX-AMS_CHTML"></script>
   <script src="mathjax3/tex-chtml.js" id="MathJax-script" async></script>
