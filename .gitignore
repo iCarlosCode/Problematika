@@ -8,3 +8,5 @@ __pycache__
 /update
 setup.py
 /setup
+/webrtc_event_logs
+/blob_storage
