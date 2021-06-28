@@ -11,6 +11,7 @@ from tabs import (
     sobre,
 )
 from cefpython3 import cefpython as cef
+from shutil import rmtree
 
 
 def main():
@@ -20,10 +21,10 @@ def main():
     cef.Initialize()
     last_entry = ttk.Entry()
 
-    win.title('Calculadora Problematika')
+    win.title("Calculadora Problematika")
     win.minsize(750, 620)
     win.wm_geometry("750x620")
-    win.wm_iconbitmap('i.ico')
+    win.wm_iconbitmap("i.ico")
     win.grid_columnconfigure(0, weight=2, uniform="uniform")
     win.grid_columnconfigure(1, weight=1, uniform="uniform")
     win.grid_rowconfigure(0, weight=5, uniform="uniform")
@@ -59,6 +60,8 @@ def main():
 
     win.mainloop()
     cef.Shutdown()
+    rmtree("webrtc_event_logs", ignore_errors=True)
+    rmtree("blob_storage", ignore_errors=True)
 
 
 def load(e):
