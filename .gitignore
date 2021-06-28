@@ -6,4 +6,6 @@ __pycache__
 /build
 /res
 build.py
+/update
+update.py
 setup.py
