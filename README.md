@@ -1,7 +1,7 @@
 # Problematika
  Problematika: a calculadora vetorial que te ensina passo a passo!
 
-<img src="pks.png" align="right" width="40%" height="100%"></img>
+<img src="pks.png" align="right" width="100%" height="100%"></img>
 
 ## Funções
 - Formar um vetor com de dois pontos
@@ -13,12 +13,13 @@
 
 Calculadora feita em Python. O instalador foi feito usando o Install Creator. A interface foi feita usando o Tkinter.
 
+![J2](https://user-images.githubusercontent.com/69172891/123735118-02855d80-d875-11eb-9a9c-2cb9b0661af5.PNG)
 ## Instalação / Uso
 Para utilizar a Calculadora Problematika, é só baixar e instalar.
 [Clique aqui para baixar a versão mais recente da calculadora.](https://github.com/iCarlosCode/Problematika/releases/download/1.0/problematika-setup.exe)
 E [clique aqui escolher uma outra versão para baixar.](https://github.com/iCarlosCode/Problematika/releases)
 
-![J2](https://user-images.githubusercontent.com/69172891/123735118-02855d80-d875-11eb-9a9c-2cb9b0661af5.PNG)
+
 
 #### Calcular
 Basta digitar cada cordenada do vetor ou do ponto e depois clicar no botão *Calcular*, o resultado vai aparecer logo em cima, e a resolução passo a passo será exibida na lateral direita.
