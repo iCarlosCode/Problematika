@@ -1,9 +1,8 @@
 # Problematika
  Problematika: a calculadora vetorial que te ensina passo a passo!
 
-<img src="pks.png" align="right" width="100%" height="100%"></img>
-
 ## Funções
+<img src="pks.png" align="right"></img>
 - Formar um vetor com de dois pontos
 - Calcular o produto vetorial
 - Calcular o produto escalar
