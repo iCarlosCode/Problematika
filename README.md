@@ -11,12 +11,11 @@
 - Subtrair coordenadas
 
 ## Sobre a Calculadora
-A Calculadora Problematika é feita em Python. O instalador foi feito usando o Install Creator. A interface foi feita usando o Tkinter.
+A Calculadora Problematika é feita em Python. A interface foi feita usando o Tkinter.
 
 ![J2](https://user-images.githubusercontent.com/69172891/123735118-02855d80-d875-11eb-9a9c-2cb9b0661af5.PNG)
 ## Instalação / Uso
-Para utilizar a Calculadora Problematika, é só baixar e instalar.
-[Clique aqui para baixar a versão mais recente da calculadora.](https://github.com/iCarlosCode/Problematika/releases/download/1.0/problematika-setup.exe)
+Para utilizar a Calculadora Problematika, é só baixar, extrair o arquivo ZIP onde desejar, e puxar o atalho da Calculadora Problematika para Área de Trabalho. [Clique aqui para baixar a versão mais recente da calculadora.](https://github.com/iCarlosCode/Problematika/releases/download/1.0/problematika.zip)
 E [clique aqui escolher uma outra versão para baixar.](https://github.com/iCarlosCode/Problematika/releases)
 
 ### Calcular
