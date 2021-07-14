@@ -16,7 +16,8 @@ A Calculadora Problematika é feita em Python. A interface foi feita usando o Tk
 ![J2](https://user-images.githubusercontent.com/69172891/123735118-02855d80-d875-11eb-9a9c-2cb9b0661af5.PNG)
 ## Instalação / Uso
 Para utilizar a Calculadora Problematika, é só baixar, extrair o arquivo ZIP onde desejar, e puxar o atalho da Calculadora Problematika para Área de Trabalho. [Clique aqui para baixar a versão mais recente da calculadora.](https://github.com/iCarlosCode/Problematika/releases/download/1.0/problematika.zip)
-E [clique aqui escolher uma outra versão para baixar.](https://github.com/iCarlosCode/Problematika/releases)
+E [clique aqui escolher uma outra versão para baixar.](https://github.com/iCarlosCode/Problematika/releases) Ou assista o tutorial:
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/uVabivDXGqs/0.jpg)](https://youtu.be/uVabivDXGqs)
 
 ### Calcular
 Basta digitar cada cordenada do vetor ou do ponto e depois clicar no botão *Calcular*, o resultado vai aparecer logo em cima, e a resolução passo a passo será exibida na lateral direita.
