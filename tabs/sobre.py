@@ -22,6 +22,7 @@ def criarTab(tab_control):
 1) Compartilhando a calculadora com o maior número de pessoas possível.
 2) Você também pode me ajudar enviando qualquer quantia no PIX (QR CODE ACIMA).
 3) Meu email para contato e PIX: carlospos@aluno.ufrb.edu.br
+Carlos Pedro de Oliveira dos Santos; CPF: ***.165.535-**; Instituição: Banco Bradesco S.A.
 4) Você pode contribuir para o desenvolvimento da calculadora no GitHub.
 5) Pode também fazer sugestões e reportar bugs.""")
     label.grid(column=0, row=1, columnspan=2)
