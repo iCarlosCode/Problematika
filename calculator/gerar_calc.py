@@ -80,6 +80,39 @@ Temos:
         file.write(text)
 
 
+def gerar_calculo_perpendincularismo(v=(0, 0, 0), u=(0, 0, 0)):
+    text = (
+        HTML_BASE
+        + f"""TODO Para subtrair dois vetores \(\\vec v=(a, b, c)\) e \(\\vec u=(d, e, f)\), podemos usar a fórmula: \(\\vec v + \\vec u = (a + d, b + e, c + f)\).
+<br>Sendo \(\\vec v=({v[0]}, {v[1]}, {v[2]})\) e \(\\vec u=({u[0]}, {u[1]}, {u[2]})\).
+Temos:
+    \(\\vec v + \\vec u = ({v[0]} + {u[0]}, {v[1]} + {u[1]}, {v[2]} + {u[2]})\).<br>
+    \(\\vec v + \\vec u = ({v[0]+u[0]}, {v[1]+u[1]}, {v[2]+u[2]})\).
+</body>
+</html>"""
+    )
+
+    with open("calculo1.html", "w") as file:
+        file.write(text)
+
+
+def gerar_calculo_paralelismo(v=(0, 0, 0), u=(0, 0, 0)):
+    text = (
+        HTML_BASE
+        + f"""TODO Para subtrair dois vetores \(\\vec v=(a, b, c)\) e \(\\vec u=(d, e, f)\), podemos usar a fórmula: \(\\vec v + \\vec u = (a + d, b + e, c + f)\).
+<br>Sendo \(\\vec v=({v[0]}, {v[1]}, {v[2]})\) e \(\\vec u=({u[0]}, {u[1]}, {u[2]})\).
+Temos:
+    \(\\vec v + \\vec u = ({v[0]} + {u[0]}, {v[1]} + {u[1]}, {v[2]} + {u[2]})\).<br>
+    \(\\vec v + \\vec u = ({v[0]+u[0]}, {v[1]+u[1]}, {v[2]+u[2]})\).
+</body>
+</html>"""
+    )
+    
+
+    with open("calculo1.html", "w") as file:
+        file.write(text)
+
+
 def gerar_calculo_produto_escalar(v=(0, 0, 0), u=(0, 0, 0)):
     text = (
         HTML_BASE
@@ -342,6 +375,23 @@ Assim o resultado do produto vetorial é:<br>
 </body>
 </html>"""
     )
+
+    with open("calculo1.html", "w") as file:
+        file.write(text)
+
+
+def gerar_calculo_pos_relativa_duas_retas(pR = (0, 0, 0), vR = (0, 0, 0), pS = (0, 0, 0), uS = (0, 0, 0)):
+    text = (
+        HTML_BASE
+        + f"""TODO POS RELATICVA DUAS RETAS Para subtrair dois vetores \(\\vec v=(a, b, c)\) e \(\\vec u=(d, e, f)\), podemos usar a fórmula: \(\\vec v + \\vec u = (a + d, b + e, c + f)\).
+<br>Sendo \(\\vec v=({v[0]}, {v[1]}, {v[2]})\) e \(\\vec u=({u[0]}, {u[1]}, {u[2]})\).
+Temos:
+    \(\\vec v + \\vec u = ({v[0]} + {u[0]}, {v[1]} + {u[1]}, {v[2]} + {u[2]})\).<br>
+    \(\\vec v + \\vec u = ({v[0]+u[0]}, {v[1]+u[1]}, {v[2]+u[2]})\).
+</body>
+</html>"""
+    )
+    
 
     with open("calculo1.html", "w") as file:
         file.write(text)
