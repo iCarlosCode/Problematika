@@ -1,3 +1,13 @@
+
+
+</p>
+
+<a href="https://github.com/iCarlosCode/Problematika/releases"><img src="https://img.shields.io/github/v/release/iCarlosCode/Problematika" alt="release"/></a>
+<a href="https://github.com/iCarlosCode/Problematika/network/members"><img src="https://img.shields.io/github/forks/iCarlosCode/Problematika" alt="forks"/></a>
+<a href="https://github.com/iCarlosCode/Problematika/stargazers"><img src="https://img.shields.io/github/stars/iCarlosCode/Problematika" alt="stars"/></a>
+[![Github All Releases](https://img.shields.io/github/downloads/iCarlosCode/Problematika/total.svg)]()
+</p>
+
 # Problematika
  Problematika: a calculadora vetorial que te ensina passo a passo!
 
