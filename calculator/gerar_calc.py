@@ -1,3 +1,4 @@
+from calculator.operations import calcularProdutoEscalar, calcularProdutoVetorial
 import os
 
 c = "\[\sqrt{{{c}}}\]"
@@ -81,13 +82,16 @@ Temos:
 
 
 def gerar_calculo_perpendincularismo(v=(0, 0, 0), u=(0, 0, 0)):
+    e =calcularProdutoEscalar(v, u)
     text = (
         HTML_BASE
-        + f"""TODO Para subtrair dois vetores \(\\vec v=(a, b, c)\) e \(\\vec u=(d, e, f)\), podemos usar a fórmula: \(\\vec v + \\vec u = (a + d, b + e, c + f)\).
-<br>Sendo \(\\vec v=({v[0]}, {v[1]}, {v[2]})\) e \(\\vec u=({u[0]}, {u[1]}, {u[2]})\).
+        + f"""Quando dois vetores \(\\color{{teal}}{{\\vec v=(a, b, c)}}\) e \(\\color{{#A80}}{{\\vec u=(d, e, f)}}\) são perpendiculares, o seu produto escalar é \(0\), então \(\\color{{teal}}{{\\vec v}} \\cdot \\color{{#A80}}{{\\vec u}} = 0\).<br>
+
+<br>Sendo \(\\color{{teal}}{{\\vec v=({v[0]}, {v[1]}, {v[2]})}}\) e \(\\color{{#A80}}{{\\vec u=({u[0]}, {u[1]}, {u[2]})}}\).
 Temos:
-    \(\\vec v + \\vec u = ({v[0]} + {u[0]}, {v[1]} + {u[1]}, {v[2]} + {u[2]})\).<br>
-    \(\\vec v + \\vec u = ({v[0]+u[0]}, {v[1]+u[1]}, {v[2]+u[2]})\).
+\(\\color{{teal}}{{({v[0]}, {v[1]}, {v[2]})}} \\cdot \\color{{#A80}}{{({u[0]}, {u[1]}, {u[2]})}} = {e}\). Como \({e}\){'' if e == 0 else ' não'} é igual a \(0\), então os vetores \(\\color{{teal}}{{\\vec v=({v[0]}, {v[1]}, {v[2]})}}\) e \(\\color{{#A80}}{{\\vec u=({u[0]}, {u[1]}, {u[2]})}}\)<b>{'' if e == 0 else ' não'} são perpendiculares</b>.<br>
+
+<br><b>OBS:</b> Para saber como calcular o produto escalar passo a passo, vá até a seção "Produto Escalar" nesta calculadora.
 </body>
 </html>"""
     )
@@ -97,16 +101,20 @@ Temos:
 
 
 def gerar_calculo_paralelismo(v=(0, 0, 0), u=(0, 0, 0)):
+    w = calcularProdutoVetorial(v, u)
+    neq = "\\neq"
     text = (
         HTML_BASE
-        + f"""TODO Para subtrair dois vetores \(\\vec v=(a, b, c)\) e \(\\vec u=(d, e, f)\), podemos usar a fórmula: \(\\vec v + \\vec u = (a + d, b + e, c + f)\).
-<br>Sendo \(\\vec v=({v[0]}, {v[1]}, {v[2]})\) e \(\\vec u=({u[0]}, {u[1]}, {u[2]})\).
+        + f"""Quando dois vetores \(\\color{{teal}}{{\\vec v=(a, b, c)}}\) e \(\\color{{#A80}}{{\\vec u=(d, e, f)}}\) são paralelos, o seu produto vetorial é um vetor nulo, então \(\\color{{teal}}{{\\vec v}} \\times \\color{{#A80}}{{\\vec u}} = (0, 0, 0) = \\vec o\).<br>
+
+<br>Sendo \(\\color{{teal}}{{\\vec v=({v[0]}, {v[1]}, {v[2]})}}\) e \(\\color{{#A80}}{{\\vec u=({u[0]}, {u[1]}, {u[2]})}}\).
 Temos:
-    \(\\vec v + \\vec u = ({v[0]} + {u[0]}, {v[1]} + {u[1]}, {v[2]} + {u[2]})\).<br>
-    \(\\vec v + \\vec u = ({v[0]+u[0]}, {v[1]+u[1]}, {v[2]+u[2]})\).
+\(\\color{{teal}}{{({v[ 0]}, {v[1]}, {v[2]})}} \\times \\color{{#A80}}{{({u[0]}, {u[1]}, {u[2]})}} = ({w[0]}, {w[1]}, {w[2]}) {'=' if w == (0, 0, 0) else neq}\\vec o\). Como \(({w[0]}, {w[1]}, {w[2]})\){'' if w == (0, 0, 0) else ' não'} é um vetor nulo, então os vetores \(\\color{{teal}}{{\\vec v=({v[0]}, {v[1]}, {v[2]})}}\) e \(\\color{{#A80}}{{\\vec u=({u[0]}, {u[1]}, {u[2]})}}\)<b>{'' if w == (0, 0, 0) else ' não'} são paralelos</b>.<br>
+
+<br><b>OBS:</b> Para saber como calcular o produto vetorial passo a passo, vá até a seção "Produto Vetorial" nesta calculadora.
 </body>
 </html>"""
-    )
+)
     
 
     with open("calculo1.html", "w") as file:
@@ -381,9 +389,31 @@ Assim o resultado do produto vetorial é:<br>
 
 
 def gerar_calculo_pos_relativa_duas_retas(pR = (0, 0, 0), vR = (0, 0, 0), pS = (0, 0, 0), uS = (0, 0, 0)):
+    w = calcularProdutoVetorial(vR, uS)
     text = (
         HTML_BASE
-        + f"""TODO POS RELATICVA DUAS RETAS Para subtrair dois vetores \(\\vec v=(a, b, c)\) e \(\\vec u=(d, e, f)\), podemos usar a fórmula: \(\\vec v + \\vec u = (a + d, b + e, c + f)\).
+        + f"""TODO POS RELATICVA DUAS RETAS Duas retas \(r: A + \\vec v\) e \(s: B + \\vec u\) podem ser:
+- Paralelas distintas (Quando \(\\vec v \\times \\vec u = \\vec o\) e teste do ponto da negativo);
+- Paralelas coincidentes (Quando \(\\vec v \\times \\vec u = \\vec o\) e teste do ponto da positivo);
+- Concorrentes (Quando \(|\\vec AB, \\vec v, \\vec u| = 0\));
+- Reversas (Quando \(|\\vec AB, \\vec v, \\vec u| \\neq 0);
+
+\\color{{teal}}{{}}\) e \(\\color{{#A80}}{{B(x_b, y_b, z_b)}}
+
+Sendo \(r: {pR} + \\color{{teal}}{{h{vR}}}\) e \(s: {pS} + \\color{{teal}}{{t{uS}}}\).
+
+1. Vamos checar se os vetores diretores das retas são paralelos.
+\(r: {pR} + \\color{{teal}}{{h{vR}}} \\color{{#A80}}{{h{vR}}}\)
+\(\\color{{teal}}{{{vR}}} \\times \\color{{#A80}}{{{vR}}} = {w}\)"""
+
++ f"""Os vetores diretores são paralelos então as retas são parelas.
+
+<br> 2. Teste do ponto. Uma forma de se fazer é usando a fórmula \(AB*\\vec u\)""" if w == (0,0,0) else f"""<br>Os vetores diretores não são paralelos então as retas não são parelas. Vamos calcular o produto misto.""" + """
+
+
+        
+        
+        Para subtrair dois vetores \(\\vec v=(a, b, c)\) e \(\\vec u=(d, e, f)\), podemos usar a fórmula: \(\\vec v + \\vec u = (a + d, b + e, c + f)\).
 <br>Sendo \(\\vec v=({v[0]}, {v[1]}, {v[2]})\) e \(\\vec u=({u[0]}, {u[1]}, {u[2]})\).
 Temos:
     \(\\vec v + \\vec u = ({v[0]} + {u[0]}, {v[1]} + {u[1]}, {v[2]} + {u[2]})\).<br>
