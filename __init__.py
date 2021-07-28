@@ -10,7 +10,7 @@ from distutils.dir_util import copy_tree
 from shutil import rmtree
 
 
-__version__ = 1.1
+__version__ = 2.0
 
 def main():
 
@@ -31,7 +31,7 @@ def check_updates() -> bool:
             response_content.decode('utf-8')
             json_response = json.loads(response_content)
             
-            if __version__ < int(json_response['tag_name']):
+            if __version__ < float(json_response['tag_name']):
                 print(f'Versão {float(json_response["tag_name"])} disponível!')
                 win = Tk()
                 result = msg.askyesno('Atualização', 'Há uma nova atualiação disponível, deseja baixá-la?')
