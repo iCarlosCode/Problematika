@@ -9,6 +9,7 @@ from tabs import (
     BrowserFrame,
     criarLinhaDeBotões,
     sobre,
+    pos_relativa,
 )
 from cefpython3 import cefpython as cef
 from shutil import rmtree
@@ -40,6 +41,7 @@ def main():
     produto_escalar.criarTab(tab_control)
     produto_vetorial.criarTab(tab_control)
     produto_misto.criarTab(tab_control)
+    pos_relativa.criarTab(tab_control)
     sobre.criarTab(tab_control)
 
     # Create Frame

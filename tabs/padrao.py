@@ -1,5 +1,7 @@
 from calculator.gerar_calc import (
     gerar_calculo_formar_vetores,
+    gerar_calculo_paralelismo,
+    gerar_calculo_perpendincularismo,
     gerar_calculo_soma,
     gerar_calculo_subtração,
 )
@@ -8,7 +10,7 @@ from tkinter import ttk
 from webbrowser import open_new_tab
 
 from . import *
-from calculator.operations import calcularSoma, calcularSubtração, obterVetorDePontos
+from calculator.operations import calcularSoma, calcularSubtração, checarParalelismo, checarPerpedincularismo, obterVetorDePontos
 
 
 def criarTab(tab_control):
@@ -46,7 +48,7 @@ def criarTab(tab_control):
     escolha_lbl.grid(row=5, stick="W")
     escolha_lbl.config(font=lbl_font)
 
-    modos = ("Formar vetor por dois pontos", "Soma", "Subtração")
+    modos = ("Formar vetor por dois pontos", "Soma", "Subtração", 'Checar se são perpedinculares', 'Checar se são paralelos')
     modo = tk.StringVar(value=modos[0])
     modos_cb = ttk.Combobox(padrao, width=15, textvariable=modo, values=modos)
     modos_cb.grid(column=1, row=5, columnspan=2, sticky="WE")
@@ -73,7 +75,13 @@ def calcular(widget):
     elif modo.get() == modos[2]:
         linhas[0]["resultado"].set(f"{calcularSubtração(a, b)}")
         gerar_calculo_subtração(a, b)
-
+    elif modo.get() == modos[3]:
+        linhas[0]["resultado"].set('Perpedinculares' if checarPerpedincularismo(a, b) else 'Não perpedinculares')
+        gerar_calculo_perpendincularismo(a, b)
+    elif modo.get() == modos[4]:
+        linhas[0]["resultado"].set('Paralelos' if checarParalelismo(a, b) else 'Não paralelos')
+        gerar_calculo_paralelismo(a, b)
+    
     Tk._root(widget).winfo_children()[2].winfo_children()[0].browser.Reload()
 
 
