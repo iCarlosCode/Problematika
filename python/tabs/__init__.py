@@ -4,6 +4,7 @@ from tkinter import ttk
 from cefpython3 import cefpython as cef
 import ctypes
 
+LBL_FONT1 = ('arial', 11, 'bold')
 
 def criarLinhaDeBotões(master, row, items):
     r = list()

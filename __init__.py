@@ -10,7 +10,7 @@ from distutils.dir_util import copy_tree
 from shutil import rmtree
 
 
-__version__ = 2.0
+__version__ = 1.1
 
 def main():
 
@@ -21,7 +21,7 @@ def main():
     os.system(f'cmd /c ".\\app.vbs"')
    
 def check_updates() -> bool:
-    url='https://api.github.com/repos/iCarlosCode/cvfp/releases/latest'
+    url='https://api.github.com/repos/iCarlosCode/problematika/releases/latest'
 
     try:
         print('Buscando atualizações...')
