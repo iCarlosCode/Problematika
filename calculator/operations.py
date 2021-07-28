@@ -30,7 +30,7 @@ def calcularPosRelativaDuasRetas(pR = (0, 0, 0), vR = (0, 0, 0), pS = (0, 0, 0),
     paralela = checarParalelismo(vR, uS)
 
     if paralela:
-        return 'coincidentes' if teste_do_ponto(pR, pS, uS) else 'paralelas'
+        return 'coincidentes' if teste_do_ponto(pR, pS, uS) else 'distintas'
     else:
         wRS = obterVetorDePontos(pR, pS)
         return 'concorrentes' if calcularProdutoMisto(wRS, vR, uS) == 0 else 'reversas'

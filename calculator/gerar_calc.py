@@ -1,4 +1,4 @@
-from calculator.operations import calcularProdutoEscalar, calcularProdutoVetorial
+from calculator.operations import calcularProdutoEscalar, calcularProdutoVetorial, obterVetorDePontos, teste_do_ponto
 import os
 
 c = "\[\sqrt{{{c}}}\]"
@@ -390,37 +390,43 @@ Assim o resultado do produto vetorial é:<br>
 
 def gerar_calculo_pos_relativa_duas_retas(pR = (0, 0, 0), vR = (0, 0, 0), pS = (0, 0, 0), uS = (0, 0, 0)):
     w = calcularProdutoVetorial(vR, uS)
+    pRpS = obterVetorDePontos(pR, pS)
+    pSpR = obterVetorDePontos(pS, pR)
+
+    x = calcularProdutoEscalar(pRpS, w)
+    tp = ((pSpR[0]*uS[0]) == (pSpR[1]*uS[1]) == (pSpR[2]*uS[2]))
     text = (
         HTML_BASE
-        + f"""TODO POS RELATICVA DUAS RETAS Duas retas \(r: A + \\vec v\) e \(s: B + \\vec u\) podem ser:
-- Paralelas distintas (Quando \(\\vec v \\times \\vec u = \\vec o\) e teste do ponto da negativo);
-- Paralelas coincidentes (Quando \(\\vec v \\times \\vec u = \\vec o\) e teste do ponto da positivo);
-- Concorrentes (Quando \(|\\vec AB, \\vec v, \\vec u| = 0\));
-- Reversas (Quando \(|\\vec AB, \\vec v, \\vec u| \\neq 0);
-
-\\color{{teal}}{{}}\) e \(\\color{{#A80}}{{B(x_b, y_b, z_b)}}
-
-Sendo \(r: {pR} + \\color{{teal}}{{h{vR}}}\) e \(s: {pS} + \\color{{teal}}{{t{uS}}}\).
-
+        + f"""Duas retas \(r: A + \\vec v\) e \(s: B + \\vec u\) podem ser:<br>
+- Paralelas distintas (Quando \(\\vec v \\times \\vec u = \\vec o\) e teste do ponto da negativo);<br>
+- Paralelas coincidentes (Quando \(\\vec v \\times \\vec u = \\vec o\) e teste do ponto da positivo);<br>
+- Concorrentes (Quando \(|\\vec AB, \\vec v, \\vec u| = 0\));<br>
+- Reversas (Quando \(|\\vec AB, \\vec v, \\vec u| \\neq 0\)).<br>
+<br>
+Sendo \(r: {pR} + \\color{{teal}}{{h{vR}}}\) e \(s: {pS} + \\color{{#A80}}{{t{uS}}}\).<br>
+<br>
 1. Vamos checar se os vetores diretores das retas são paralelos.
-\(r: {pR} + \\color{{teal}}{{h{vR}}} \\color{{#A80}}{{h{vR}}}\)
-\(\\color{{teal}}{{{vR}}} \\times \\color{{#A80}}{{{vR}}} = {w}\)"""
+\(\\color{{teal}}{{{vR}}} \\times \\color{{#A80}}{{{uS}}} = {w}\)<br>""")
 
-+ f"""Os vetores diretores são paralelos então as retas são parelas.
+    text += (f"""Os vetores diretores são paralelos então as retas são parelas.<br>
 
-<br> 2. Teste do ponto. Uma forma de se fazer é usando a fórmula \(AB*\\vec u\)""" if w == (0,0,0) else f"""<br>Os vetores diretores não são paralelos então as retas não são parelas. Vamos calcular o produto misto.""" + """
+<br> 2. Teste do ponto. Uma forma de se fazer é usando a fórmula \(A-B * \\color{{#A80}}{{\\vec u}} = (k, k, k)\) ou \(B-A * \\color{{teal}}{{\\vec v}} = (k, k, k)\); onde \(A\) é um ponto da reta \(r\) e \(B\) da reta \(s\). Se o resultado dessa conta for um vetor com <i>todas as cordenadas iguais</i>, então o teste do ponto é positivo e as retas são paralelas coicidentes.<br>
+Sendo \(A{pR}\), \(B{pS}\) e \(\\color{{#A80}}{{{uS}}}\) o vetor diretor da reta \(s\). Temos que \((A{pR} - B{pS})(\\color{{#A80}}{{{uS}}}) 
+\(= {pSpR}\\color{{#A80}}{{{uS}}}\)
+\(= ({pR[0]} - {pS[0]}, {pR[1]} - {pS[1]}, {pR[2]} - {pS[2]})\\color{{#A80}}{{{uS}}}\)
+\(= (({pSpR[0]})(\\color{{#A80}}{{{uS[0]}}}), ({pSpR[1]})(\\color{{#A80}}{{{uS[1]}}}), ({pSpR[2]})(\\color{{#A80}}{{{uS[2]}}}))\)
+\(= {(pSpR[0]*uS[0], pSpR[1]*uS[1], pSpR[2]*uS[2])}\).<br>
+Já que no resultado{'' if tp else ' nem'} todas as cordenadas são iguais, então as duas retas são <b>paralelas {'coincidentes' if tp else 'distintas'}</b>. 
 
+""" if w == (0,0,0) else f"""<br>Os vetores diretores não são paralelos então as retas não são parelas. Vamos calcular o produto misto, para saber se as retas são concorrentes ou reversas. Sendo \(A{pR}\) ponto de \(r\), \(B{pS}\) ponto de \(s\), e \({w}\) o resultado do produto vetorial dos vetores diretores das retas \(r\) e \(s\). Formando o vetor \(\\color{{blue}}{{\\overrightarrow{{AB}}}} = {pS}-{pR}\) \(= \\color{{blue}}{{{pRpS}}}\) Sabemos que o produto misto \(\left [\\vec x, \\vec y, \\vec z \\right] = \\vec x \\cdot (\\vec y \\times \\vec z)\). 
+Já sabemos que \(\\color{{teal}}{{{vR}}} \\times \\color{{#A80}}{{{uS}}} = {w}\), agora só falta fazer o produto escalar entre {w} e \(\\color{{blue}}{{\\overrightarrow{{AB}}}}\), para obter o resultado do produto misto. Temos que \(\\color{{blue}}{{{pRpS}}} \\cdot {w} = {x}\).
+<br> Como o produto escalar entre \(\\color{{blue}}{{{pRpS}}} \\cdot {w}\) é {'igual' if x == 0 else 'diferente'} a 0. Então as duas retas são {'concorrentes' if x == 0 else 'reversas'}.
+""")
+    text += ("""
+<br><br><b>OBS</b>: Para saber como formar um vetor de dois pontos, checar se vetores são paralelos, calcular produto escalar, vetorial e misto; Vá até a respectiva seção nesta calculadora.
 
-        
-        
-        Para subtrair dois vetores \(\\vec v=(a, b, c)\) e \(\\vec u=(d, e, f)\), podemos usar a fórmula: \(\\vec v + \\vec u = (a + d, b + e, c + f)\).
-<br>Sendo \(\\vec v=({v[0]}, {v[1]}, {v[2]})\) e \(\\vec u=({u[0]}, {u[1]}, {u[2]})\).
-Temos:
-    \(\\vec v + \\vec u = ({v[0]} + {u[0]}, {v[1]} + {u[1]}, {v[2]} + {u[2]})\).<br>
-    \(\\vec v + \\vec u = ({v[0]+u[0]}, {v[1]+u[1]}, {v[2]+u[2]})\).
 </body>
-</html>"""
-    )
+</html>""")
     
 
     with open("calculo1.html", "w") as file:

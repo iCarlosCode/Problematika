@@ -76,7 +76,7 @@ def calcular(widget):
     pS = obterVetor(linhas[7])
     uS = obterVetor(linhas[9])
     linhas[0]['resultado'].set(f'{calcularPosRelativaDuasRetas(pR, vR, pS, uS)}')
-    #gerar_calculo_pos_relativa_duas_retas(pR, vR, pS, uS)
+    gerar_calculo_pos_relativa_duas_retas(pR, vR, pS, uS)
 
     # Reload the browser after generating the calc
     Tk._root(widget).winfo_children()[2].winfo_children()[0].browser.Reload()
