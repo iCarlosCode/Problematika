@@ -6,21 +6,19 @@ from tkinter import messagebox as msg
 from tkinter import *
 import zipfile
 from tqdm import tqdm
-from distutils.dir_util import copy_tree
-from shutil import rmtree
 
 
 __version__ = 2.0
 
 def main():
-
-    if check_updates():
-        url = 'https://github.com/iCarlosCode/Problematika/archive/refs/heads/update.zip'
-        update_app(url)
+    response = check_updates()
+    if response is not False:
+        update_app(response)
     
     os.system(f'cmd /c ".\\app.vbs"')
    
-def check_updates() -> bool:
+def check_updates():
+    "Checks for updates; return download_url if an update is found, otherwise return False"
     url='https://api.github.com/repos/iCarlosCode/problematika/releases/latest'
 
     try:
@@ -30,20 +28,21 @@ def check_updates() -> bool:
 
             response_content.decode('utf-8')
             json_response = json.loads(response_content)
-            
+            download_url = [a['browser_download_url'] for a in json_response['assets'] if a['name'] == 'update.zip']
+
             if __version__ < float(json_response['tag_name']):
                 print(f'Versão {float(json_response["tag_name"])} disponível!')
                 win = Tk()
-                result = msg.askyesno('Atualização', 'Há uma nova atualiação disponível, deseja baixá-la?')
+                result = msg.askyesno('Atualização', 'Há uma nova atualiação disponível, em geral atualizações demoram menos de 30 segundos, deseja baixá-la?')
                 win.destroy()
-                return result
+                return result if result is False else (download_url[0] if download_url else False) 
             else:
                 return False
     except URLError:
         return False
 
     
-def update_app(url='https://github.com/iCarlosCode/Problematika/archive/refs/heads/update.zip'):
+def update_app(url):
 
     with tqdm(total=100) as pb:
         # Passo 1
@@ -74,9 +73,6 @@ def update_app(url='https://github.com/iCarlosCode/Problematika/archive/refs/hea
         with zipfile.ZipFile('upd.zip', 'r') as zf:
             zf.extractall()
 
-        copy_tree('Problematika-update/', '')
-        rmtree('Problematika-update', ignore_errors=True)
-        rmtree('run.bat', ignore_errors=True)
         os.remove('upd.zip')
 
         pb.update(100)
