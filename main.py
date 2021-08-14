@@ -76,6 +76,9 @@ def insert_number(self):
     if last_entry.get() == "0":
         last_entry.delete(0, tk.END)
         last_entry.insert(0, self)
+    elif last_entry.get() == "-0":
+        last_entry.delete(0, tk.END)
+        last_entry.insert(0, int(self) * -1)
     else:
         last_entry.insert(last_entry.index("insert"), self)
 
@@ -87,8 +90,9 @@ def delete_number():
     if (int(text) > 0 and len(text) == 1) or (int(text) < 0 and len(text) == 2):
         last_entry.delete(0, tk.END)
         last_entry.insert(0, "0")
-    elif int(text) == 0:
-        pass
+    elif text in '-0':
+        last_entry.delete(0, tk.END)
+        last_entry.insert(0, "0")
     else:
         last_entry.delete(last_entry.index("insert") - 1, last_entry.index("insert"))
 
@@ -104,9 +108,9 @@ def make_positive():
 def make_negative():
     global last_entry
     n = int(last_entry.get())
-    if n > 0:
+    if n >= 0:
         last_entry.delete(0, tk.END)
-        last_entry.insert(0, f"{n*-1}")
+        last_entry.insert(0, f"{n*-1}" if n != 0 else "-0")
 
 
 def criarTeclado(frame):
