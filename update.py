@@ -7,7 +7,8 @@ modules = {
     }
 
 files = {
-    'main.py':'update/'    
+    'main.py':'update/',
+    'base/__init__.py':'update/'
 }
 
 

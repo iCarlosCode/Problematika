@@ -3,11 +3,19 @@ from shutil import copy
 
 modules = {
     'tabs/':'build/python/tabs/',
-    'calculator/':'build/python/calculator/'
+    'calculator/':'build/python/calculator/',
+    #'base/python':'build/python',
+    #'base/mathjax2':'build/mathjax2',
     }
 
 files = {
-    'main.py':'build/'
+    'main.py':'build/',
+    'i.ico':'build/',
+    'pix.png':'build/',
+    'pk.png':'build/',
+    'base/app.vbs':'build/',
+    'base/__init__.py':'build/',
+    'base/Problematika.bat':'build/'
 }
 
 
