@@ -30,7 +30,9 @@ def main():
     win.grid_columnconfigure(1, weight=1, uniform="uniform")
     win.grid_rowconfigure(0, weight=5, uniform="uniform")
     win.grid_rowconfigure(1, weight=4, uniform="uniform")
+    # Solve focus problems
     win.bind("<Button-1>", lambda event: event.widget.focus_force())
+    
     win.bind_class("TEntry", "<FocusIn>", le)
     # Create Tab Control
     tab_control = ttk.Notebook(win)
