@@ -13,22 +13,22 @@ def criarLinhaDeBotões(master, row, items):
         r[i].grid(row = row, column=i, sticky=('NSWE'))
     return r
 
-def criarBotãoCalcular(master, row, command):
+def criarBotãoCalcular(master, row, command, columnspan = 3):
     S = ttk.Style()
     S.configure('me.TButton', font=('arial', 12, 'bold'))
     
     btn_calcular = ttk.Button(master, text='Calcular', command=command, style='me.TButton')
-    btn_calcular.grid(columnspan = 3, row = row, sticky='NSEW')
+    btn_calcular.grid(columnspan = columnspan, row = row, sticky='NSEW')
 
     return btn_calcular
 
 
-def criarLinhaDeResultado(master, row = 0):
+def criarLinhaDeResultado(master, row = 0, columnspan = 3):
     r = dict()
     r['resultado'] = tk.StringVar()
 
     r['label'] = ttk.LabelFrame(master, text = 'Resultado:')
-    r['label'].grid(columnspan = 3, column = 0, row = row, sticky='EW')
+    r['label'].grid(columnspan = columnspan, column = 0, row = row, sticky='EW')
     r['label'].grid_columnconfigure(0, weight=1)
 
     r['entry'] = ttk.Entry(r['label'], width = 15, textvariable = r['resultado'])
@@ -61,6 +61,31 @@ def criarLinhaDeCoordenadas(master, row = 0):
         linha[eixos[i]] = c
     
     return (linha)
+
+
+def criarLinhaDeCoordenadasPlano(master, row = 0):
+    linha = dict()
+    eixos = ('x','y','z')
+    sinais = (' +', ' +',' + d = 0')
+
+    # Enable horizontal scaling in this column
+    master.grid_columnconfigure((0,2, 4), weight=1, uniform=1)
+    for i in range(0, 3):
+        c = dict()
+        c['coordenada'] = tk.IntVar()
+
+        c['entry'] = ttk.Entry(master,width = 15, textvariable = c['coordenada'])
+        c['entry'].grid(column = i*2, row = row, sticky='EW')
+        c['entry'].config(font=('arial', 20, 'bold'))
+
+        c['label'] = ttk.Label(master, text = f'{eixos[i]}{sinais[i]}')
+        c['label'].config(font=('arial', 20, 'bold'))
+        c['label'].grid(column = i*2+1, row = row, sticky='W')
+        
+        linha[eixos[i]] = c
+    
+    return (linha)
+
 
 def criarLinhaDeTexto(master, text='', font=(), row = 0, columnspan=1):
     lbl = ttk.Label(master, text=text)

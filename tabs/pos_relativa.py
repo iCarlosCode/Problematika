@@ -1,4 +1,5 @@
 from tabs import pos_relativa_reta_reta 
+from tabs import pos_relativa_plano_plano 
 from tkinter import *
 from tkinter import ttk
 
@@ -13,6 +14,7 @@ def criarTab(tab_control):
     posr_tab_control.grid(sticky="NSEW")
 
     pos_relativa_reta_reta.criarTab(posr_tab_control)
+    pos_relativa_plano_plano.criarTab(posr_tab_control)
  
 
 if __name__ == '__main__':
