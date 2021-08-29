@@ -1,5 +1,8 @@
 #from calculator.gerar_calc import gerar_calculo_pos_relativa_duas_retas
 #from calculator.operations import calcularPosRelativaDuasRetas
+# [ ] Criar o teste para posição relativa entre dois planos
+# [ ] Criar a função para calcular a posição entre dois planos
+# [ ] Criar a função para gerar o Cálculo da Posição relativa entre dois planos
 from tkinter import *
 from tkinter import ttk
 from tabs import *
