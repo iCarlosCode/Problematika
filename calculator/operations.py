@@ -1,4 +1,5 @@
 from tkinter.constants import S
+from fractions import Fraction
 
 
 def obterVetorDePontos(dotA = (0, 0, 0), dotB = (0, 0, 0)):
@@ -25,7 +26,6 @@ def calcularMultEscalar(e = 1, v = (0, 0, 0)):
 def teste_do_ponto(pR = (0, 0, 0), pS = (0, 0, 0), uS = (0, 0, 0)):
     return (((pR[0] - pS[0]) * (uS[0])) == ((pR[1] - pS[1]) * (uS[1])) == ((pR[2] - pS[2]) * (uS[2])))
 
-
 def calcularPosRelativaDuasRetas(pR = (0, 0, 0), vR = (0, 0, 0), pS = (0, 0, 0), uS = (0, 0, 0)):
     paralela = checarParalelismo(vR, uS)
 
@@ -34,6 +34,42 @@ def calcularPosRelativaDuasRetas(pR = (0, 0, 0), vR = (0, 0, 0), pS = (0, 0, 0),
     else:
         wRS = obterVetorDePontos(pR, pS)
         return 'concorrentes' if calcularProdutoMisto(wRS, vR, uS) == 0 else 'reversas'
+
+
+def valor_formatado(n):
+    return f"+ {Fraction(n)}" if n >= 0 else f"- {Fraction(-1*n)}"
+
+
+def completar_quadrado(x, y = None, z = None, F = 0):
+    resultado = ""
+    incognitas = {}
+    if x and x[0] != 0:
+        incognitas['x'] = {"a": x[0], "b": x[1], "c": 0, 'd':1, 'expr':''}
+    if y and y[0] != 0:
+        incognitas['y'] = {"a": y[0], "b": y[1], "c": 0, 'd':1, 'expr':''}
+    if z and z[0] != 0:
+        incognitas['z'] = {"a": z[0], "b": z[1], "c": 0, 'd':1, 'expr':''}
+    if not incognitas:
+        raise ValueError
+
+    for k, i in incognitas.items():
+        i['d'] = i['a']
+        i['b'] = Fraction(i['b'], i['a'])
+        i['b'] = Fraction(i['b'], 2)
+        i['c'] = i['d']*(i['b']**2)
+        i['a'] = Fraction(i['a'], i['a'])
+
+        if i['b'] == 0:
+            i['expr'] = f"{k}²"
+        else:
+            i['expr'] = f"{'' if i['d'] == 1 else i['d']}({k} {valor_formatado(i['b'])})²"
+
+    for i in incognitas.values():
+        resultado += f"{i['expr']}" if resultado == '' else (f" + {i['expr']}" if i['d'] >= 0 else f" - {i['expr']}")
+        F += i['c']
+
+    return f'{resultado} = {F}'
+
 
 def calcular(coordenadas, resultado_lbl, coordenada4e, modo, modos):
     coordenada1 = (coordenadas[0]['x']['coordenada'].get(), coordenadas[0]['y']['coordenada'].get(), coordenadas[0]['z']['coordenada'].get())

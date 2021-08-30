@@ -1,52 +1,7 @@
 import unittest
 from unittest import result
 import calculator.operations as op
-from fractions import Fraction
 
-
-def valor_formatado(n):
-    return f"+ {Fraction(n)}" if n >= 0 else f"- {Fraction(-1*n)}"
-
-
-def completar_quadrado(x, y = None, z = None, F = 0):
-    resultado = ""
-    icognitas = {}
-    if x:
-        icognitas['x'] = {"a": x[0], "b": x[1], "c": 0, 'd':1, 'expr':''}
-    if y:
-        icognitas['y'] = {"a": y[0], "b": y[1], "c": 0, 'd':1, 'expr':''}
-    if z:
-        icognitas['z'] = {"a": z[0], "b": z[1], "c": 0, 'd':1, 'expr':''}
-    
-    """
-    [] ax = 0
-    [x] ax = 1 e bx é divisível por 2
-    [x] ax = 1 e bx não é divisível por 2
-
-    [x] ax != 1 e bx é divisível por ax e depois por 2
-    [x] ax != 1 e bx é divisível por ax e depois não por 2
-
-    [x] ax != 1 e bx não é divisível por ax mas é por 2
-    [x] ax != 1 e bx não é divisível por ax e nem por 2
-    """
-
-    for k, i in icognitas.items():
-        i['d'] = i['a']
-        i['b'] = Fraction(i['b'], i['a'])
-        i['b'] = Fraction(i['b'], 2)
-        i['c'] = i['d']*(i['b']**2)
-        i['a'] = Fraction(i['a'], i['a'])
-
-        if i['b'] == 0:
-            i['expr'] = f"{k}²"
-        else:
-            i['expr'] = f"{'' if i['d'] == 1 else i['d']}({k} {valor_formatado(i['b'])})²"
-
-    for i in icognitas.values():
-        resultado += f"{i['expr']}" if resultado == '' else (f" + {i['expr']}" if i['d'] >= 0 else f" - {i['expr']}")
-        F += i['c']
-
-    return f'{resultado} = {F}'
 
 
 class TestOperations(unittest.TestCase):
@@ -71,26 +26,20 @@ class TestOperations(unittest.TestCase):
         pass
 
     def test_completar_quadrado(self):
-        self.assertEqual("(x + 1)² = 1", completar_quadrado((1, 2)))
-        self.assertEqual("(x - 1)² = 1", completar_quadrado((1, -2)))
-        self.assertEqual("x² = 0", completar_quadrado((1, 0)))
-        self.assertEqual("x² + y² = 0", completar_quadrado((1, 0), y = (1,0), F=0))
+        self.assertEqual("(x + 1)² = 1", op.completar_quadrado((1, 2)))
+        self.assertEqual("(x - 1)² = 1", op.completar_quadrado((1, -2)))
+        self.assertEqual("x² = 0", op.completar_quadrado((1, 0)))
+        self.assertEqual("x² + y² = 0", op.completar_quadrado((1, 0), y = (1,0), F=0))
 
-        self.assertEqual("3(x + 3)² = 27", completar_quadrado((3, 18)))
-        self.assertEqual("2(x + 1)² = 2", completar_quadrado((2, 4)))
-        self.assertEqual("(x + 3/2)² = 9/4", completar_quadrado((1, 3)))
-        self.assertEqual("2(x + 1/2)² = 1/2", completar_quadrado((2, 2)))
-        self.assertEqual("3(x + 1/3)² = 1/3", completar_quadrado((3, 2)))
-        self.assertEqual("3(x + 5/6)² = 25/12", completar_quadrado((3, 5)))
+        self.assertEqual("3(x + 3)² = 27", op.completar_quadrado((3, 18)))
+        self.assertEqual("2(x + 1)² = 2", op.completar_quadrado((2, 4)))
+        self.assertEqual("(x + 3/2)² = 9/4", op.completar_quadrado((1, 3)))
+        self.assertEqual("2(x + 1/2)² = 1/2", op.completar_quadrado((2, 2)))
+        self.assertEqual("3(x + 1/3)² = 1/3", op.completar_quadrado((3, 2)))
+        self.assertEqual("3(x + 5/6)² = 25/12", op.completar_quadrado((3, 5)))
         
-
-
-
-        #self.assertEqual("ax = 1 e bx não é divisível por 2", completar_quadrado(1, 1, 0))
-        #self.assertEqual("ax != 1 e bx é divisível por ax e depois por 2", completar_quadrado(2, 4, 0))
-        #self.assertEqual("ax != 1 e bx é divisível por ax e depois não por 2", completar_quadrado(2, 2, 0))
-        #self.assertEqual("ax != 1 e bx não é divisível por ax mas é por 2", completar_quadrado(3, 2, 0))
-        #self.assertEqual("ax != 1 e bx não é divisível por ax e nem por 2", completar_quadrado(3, 5, 0))
+        with self.assertRaises(ValueError):
+            op.completar_quadrado((0, 0))
 
 
     def test_obter_vetor_de_dois_pontos(self):
