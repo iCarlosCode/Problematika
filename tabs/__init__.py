@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import ttk
 from cefpython3 import cefpython as cef
 import ctypes
+import re
 
 LBL_FONT1 = ('arial', 11, 'bold')
 
@@ -23,12 +24,19 @@ def criarBotãoCalcular(master, row, command):
     return btn_calcular
 
 
-def criarLinhaDeResultado(master, row = 0):
+def split_equation(equation):
+    # Fraction(i) caso o numero antes do =
+    # Fraction(i)*-1 caso o numero depois do =
+    equation = equation.replace('^2', '²')
+    pattern = re.compile(r"(([-+]\s*)*\d*[./,]?\d*([x-z][²]|[x-z])|[-+]\s*\d*[./,]?\d*|[=]\s*\d*[./,]?\d*)")
+    return [match.group().replace(' ', '') for match in pattern.finditer(equation) if str(match.group()) not in '=0 = 0 = -0 = +0 = - 0 = + 0']
+
+def criarLinhaDeResultado(master, row = 0, columnspan=3):
     r = dict()
     r['resultado'] = tk.StringVar()
 
     r['label'] = ttk.LabelFrame(master, text = 'Resultado:')
-    r['label'].grid(columnspan = 3, column = 0, row = row, sticky='EW')
+    r['label'].grid(columnspan = columnspan, column = 0, row = row, sticky='EW')
     r['label'].grid_columnconfigure(0, weight=1)
 
     r['entry'] = ttk.Entry(r['label'], width = 15, textvariable = r['resultado'])
@@ -37,7 +45,6 @@ def criarLinhaDeResultado(master, row = 0):
     r['entry'].config(state='readonly', background = r['entry'].cget('background'))
     
     return (r)
-
 
 
 def criarLinhaDeCoordenadas(master, row = 0):

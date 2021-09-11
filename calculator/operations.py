@@ -1,5 +1,6 @@
 from tkinter.constants import S
 from fractions import Fraction
+import re
 
 
 def obterVetorDePontos(dotA = (0, 0, 0), dotB = (0, 0, 0)):
@@ -36,18 +37,49 @@ def calcularPosRelativaDuasRetas(pR = (0, 0, 0), vR = (0, 0, 0), pS = (0, 0, 0),
         return 'concorrentes' if calcularProdutoMisto(wRS, vR, uS) == 0 else 'reversas'
 
 
+def obter_coeficiente(e, array):
+
+    F = [i for i in array if '=' in i]
+
+    if e == '=' and F:
+        return re.match(r"=\s*([-+]\s*)*\d*[./,]?\d*", F[0].replace(' ', '')).group()[1:]*-1
+    elif e == '=' and '=' not in array:
+        for i in array:
+            if not (i.__contains__('x') or i.__contains__('y') or i.__contains__('z')):
+                print(f'OLHA O ARRAY: {array}')
+                # Fraction(i) caso o numero antes do =
+                # Fraction(i)*-1 caso o numero depois do =
+                #x² + y² - 6x + 10y = -18
+
+                return Fraction(i)
+    
+    for i in array:
+        if e in i and i[-1] == e[-1]:
+            n = i.replace(e, '')
+            if n == '' or n == '+':
+                return 1
+            elif n == '-':
+                return -1
+            else:
+                return Fraction(n)
+
+
 def valor_formatado(n):
     return f"+ {Fraction(n)}" if n >= 0 else f"- {Fraction(-1*n)}"
 
-
 def completar_quadrado(x, y = None, z = None, F = 0):
+    if F:
+        F *= -1
+    else:
+        F = 0
+
     resultado = ""
     incognitas = {}
-    if x and x[0] != 0:
+    if x and x[0] and x[1] and x[0] != 0:
         incognitas['x'] = {"a": x[0], "b": x[1], "c": 0, 'd':1, 'expr':''}
-    if y and y[0] != 0:
+    if y and y[0] and y[1] and (y[0] != 0):
         incognitas['y'] = {"a": y[0], "b": y[1], "c": 0, 'd':1, 'expr':''}
-    if z and z[0] != 0:
+    if z and z[0] and z[1] and z[0] != 0:
         incognitas['z'] = {"a": z[0], "b": z[1], "c": 0, 'd':1, 'expr':''}
     if not incognitas:
         raise ValueError
@@ -66,6 +98,7 @@ def completar_quadrado(x, y = None, z = None, F = 0):
 
     for i in incognitas.values():
         resultado += f"{i['expr']}" if resultado == '' else (f" + {i['expr']}" if i['d'] >= 0 else f" - {i['expr']}")
+    
         F += i['c']
 
     return f'{resultado} = {F}'

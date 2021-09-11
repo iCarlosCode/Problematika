@@ -10,6 +10,7 @@ from tabs import (
     criarLinhaDeBotões,
     sobre,
     pos_relativa,
+    completar_quadrado
 )
 from cefpython3 import cefpython as cef
 from shutil import rmtree
@@ -39,6 +40,7 @@ def main():
     tab_control.grid(sticky="NSEW")
 
     # Create Tabs
+    completar_quadrado.criarTab(tab_control)
     padrao.criarTab(tab_control)
     produto_escalar.criarTab(tab_control)
     produto_vetorial.criarTab(tab_control)
