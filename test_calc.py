@@ -1,6 +1,8 @@
+from fractions import Fraction
 import unittest
 from unittest import result
 import calculator.operations as op
+from tabs import completar_quadrado, split_equation
 
 
 
@@ -24,12 +26,38 @@ class TestOperations(unittest.TestCase):
 
     def tearDown(self):
         pass
+    
+    
+
+    def test_de_fogo_completar_quadrado(self):
+        #completar_quadrado()
+        pass
+        #TODO vai receber o completar_eq do tabs.completar_quadrado
+
+    def test_split_equation(self):
+        self.assertEqual(['x²', '+2x', '+y²', '-6y', '=6'], split_equation('x² +2x + y² - 6y=6'))
+        self.assertEqual(['x²', '+2x', '+y²', '-6y', '+2'], split_equation('x² +2x + y² - 6y + 2=0'))
+        self.assertEqual(['x²', '-1/2x', '+y²', '-0.5y', '+2'], split_equation('x² -1/2x + y² - 0.5y + 2=0'))
+
+
+    def test_obter_coeficiente(self):
+        sample = ['x²', '2x', 'y²', '1/2y', '6']
+        
+        self.assertEqual(1, op.obter_coeficiente('x²', sample))
+        self.assertEqual(2, op.obter_coeficiente('x', sample))
+        self.assertEqual(1, op.obter_coeficiente('y²', sample))
+        self.assertEqual(Fraction(1,2), op.obter_coeficiente('y', sample))
+        self.assertEqual(6, op.obter_coeficiente('=', sample))
+
 
     def test_completar_quadrado(self):
         self.assertEqual("(x + 1)² = 1", op.completar_quadrado((1, 2)))
         self.assertEqual("(x - 1)² = 1", op.completar_quadrado((1, -2)))
         self.assertEqual("x² = 0", op.completar_quadrado((1, 0)))
         self.assertEqual("x² + y² = 0", op.completar_quadrado((1, 0), y = (1,0), F=0))
+        self.assertEqual("(x + 1)² + (y - 3)² = 4", op.completar_quadrado((1, 2), y = (1,-6), F=6))
+        self.assertEqual("(x - 3)² + (y + 4)² = 4", op.completar_quadrado((1, -6), y = (1,8), F=21))
+        self.assertEqual("3(x + 3)² + 2(y - 2)² = 6", op.completar_quadrado((3, 18), y = (2,-8), F=29))
 
         self.assertEqual("3(x + 3)² = 27", op.completar_quadrado((3, 18)))
         self.assertEqual("2(x + 1)² = 2", op.completar_quadrado((2, 4)))
