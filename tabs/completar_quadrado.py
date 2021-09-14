@@ -37,7 +37,7 @@ def calcular(widget):
     try:
         result = completar_eq(equation, li)
     except ValueError:
-        messagebox.showerror('Erro', 'Por favor digite uma equação no formato ax² + bx + c = 0.')
+        messagebox.showerror('Erro', 'Por favor, digite uma equação no formato ax² + bx + c = 0.')
         return
     linhas[0]['resultado'].set(result)
 
