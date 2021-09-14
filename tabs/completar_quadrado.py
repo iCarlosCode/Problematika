@@ -1,4 +1,5 @@
-from tkinter import *
+from tkinter import * 
+from tkinter import messagebox
 from tkinter import ttk
 from . import *
 from calculator.operations import obter_coeficiente, completar_quadrado
@@ -33,7 +34,11 @@ def criarTab(tab_control):
 def calcular(widget):
     equation = linhas[1].get("1.0",END)
     li = equation_to_list(equation)
-    result = completar_eq(equation, li)
+    try:
+        result = completar_eq(equation, li)
+    except ValueError:
+        messagebox.showerror('Erro', 'Por favor digite uma equação no formato ax² + bx + c = 0.')
+        return
     linhas[0]['resultado'].set(result)
 
     if '=0' in equation or '= 0' in equation: #re.match(r"=\s*([-+]\s*)*0*", equation):
