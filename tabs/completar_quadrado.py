@@ -49,9 +49,10 @@ def calcular(widget):
 
 def checar_expoente(e):
     text =  e.widget.get("1.0",END)
-    text = text.replace('^2', '²')
-    e.widget.replace("1.0", END, text)
-    e.widget.mark_set("insert", e.widget.index('1.0 lineend'))
+    if '^2' in text:
+        text = text.replace('^2', '²')
+        e.widget.replace("1.0", END, text)
+        e.widget.mark_set("insert", e.widget.index('1.0 lineend'))
     
 
 def adicionar_expoente():

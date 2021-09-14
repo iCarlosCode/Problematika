@@ -460,7 +460,7 @@ def completar_incognita(a = 1, b = 2, x = 'x'):
     else:
         result.append(f'''<p>Vamos operar agora a equação \({a}{x}^2 {sinal(b)} {b}{x}\).</p>
         <ol>
-    <li>Como \(a ≠ 1\) colocamos \(a\) em evidência: \({a}\left[{x}^2 {sinal(Fraction(b, a))} \\frac{{{b}{x}}}{a}\\right]\)</li>
+    <li>Como \(a \\neq 1\) colocamos \(a\) em evidência: \({a}\left[{x}^2 {sinal(Fraction(b, a))} \\frac{{{b}{x}}}{a}\\right]\)</li>
     <li>Começamos a completar quadrado usando essa estrutura e copiando as partes pintadas: \({a}\left[\color{{#A80}}{{{x}}}^2
       \color{{#A80}}{{{sinal(Fraction(b, a))}}} \\frac{{{b}{x}}}{{{a}}} \\right] \\to {a}\left[ \left(\color{{#A80}}{{{x} +}}\ \\right)^2 \\right]\)
     </li>
