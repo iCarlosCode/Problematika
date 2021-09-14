@@ -7,7 +7,6 @@ from calculator.gerar_calc import (
 )
 from tkinter import *
 from tkinter import ttk
-from webbrowser import open_new_tab
 
 from . import *
 from calculator.operations import calcularSoma, calcularSubtração, checarParalelismo, checarPerpedincularismo, obterVetorDePontos

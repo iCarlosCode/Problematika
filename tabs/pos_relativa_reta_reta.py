@@ -4,15 +4,6 @@ from tkinter import *
 from tkinter import ttk
 
 from tabs import *
-def on_mousewheel(self, event):
-    self.yview_scroll(int(-1*event.delta/120), 'units')
-
-def onFrameConfigure(canvas):
-    canvas.configure(scrollregion=canvas.bbox('all'))
-
-def onCanvasConfigure(canvas, frame):
-    canvas.update()
-    canvas.create_window((0,0), window=frame, anchor=NW, width=canvas.winfo_width())
 
 def criarTab(tab_control):
     global linhas, lbl_resultado
@@ -25,7 +16,7 @@ def criarTab(tab_control):
 
     tab_control.add(pos_relativa_reta_reta, text='Duas Retas')
 
-    cv = Canvas(pos_relativa_reta_reta)
+    cv = Canvas(pos_relativa_reta_reta, highlightthickness=0)
     vsb = Scrollbar(pos_relativa_reta_reta, orient=VERTICAL, command=cv.yview)
     frame = Frame(cv)
     

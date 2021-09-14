@@ -1,5 +1,6 @@
 from calculator.operations import calcularProdutoEscalar, calcularProdutoVetorial, obterVetorDePontos, teste_do_ponto
-import os
+from fractions import Fraction
+
 
 c = "\[\sqrt{{{c}}}\]"
 HTML_BASE = """<!DOCTYPE html>
@@ -424,6 +425,122 @@ Já sabemos que \(\\color{{teal}}{{{vR}}} \\times \\color{{#A80}}{{{uS}}} = {w}\
 </body>
 </html>""")
     
+
+    with open("calculo1.html", "w") as file:
+        file.write(text)
+
+
+def fractex(n, d, simplifcar=False):
+    f = Fraction(n, d)
+    n = f.numerator
+    d = f.denominator
+
+    if simplifcar and n % 2 == 0:
+        return f'\\frac{{{n*2}}}{{2}} = {n}'
+    else:
+        return f'{n}' if d == 1 else f'\\frac{{{n}}}{{{d}}}'
+def sinal(n):
+    return '+' if n >= 0 else ''
+
+
+def completar_incognita(a = 1, b = 2, x = 'x'):
+    result = []
+    if a==1:
+        result.append(f'''<p>Vamos operar agora a equação \({x}^2 + {b}{x}\).</p><ol>
+    <li>Como \(a = 1\) não precisamos colocar \(a\) em evidência, a equação continua a mesma: \({x}^2 + {b}{x}\)</li>
+    <li>Começamos a completar quadrado usando essa estrutura e copiando as partes pintadas: \(\color{{#A80}}{{{x}}}^2
+      \color{{#A80}}{{{sinal(b)}}} {b}{x} \\to \left(\color{{#A80}}{{{x} +}}\ \\right)^2\)</li>
+    <li>Adicionamos \(-()^2\) no local pintado: \(\left({x} +\ \\right)^2 \color{{#A80}}{{-()^2}}\)</li>
+    <li>Dividimos \({b}\) por \(2\), teremos \({fractex(b, 2, True)}\) e colocamos no local pintado: \[\left({x} {sinal(b)}
+      \color{{#A80}}{{{fractex(b, 2)}}}\ \\right)^2 - \left(\color{{#A80}}{{{fractex(b, 2)}}}\\right)^2\]</li>
+  </ol>''')
+        result.append(f'\left({x} {sinal(b)} {fractex(b, 2)}\\right)^2')
+        result.append(f'\left({fractex(b, 2)}\\right)^2')
+
+    else:
+        result.append(f'''<p>Vamos operar agora a equação \({a}{x}^2 {sinal(b)} {b}{x}\).</p>
+        <ol>
+    <li>Como \(a ≠ 1\) colocamos \(a\) em evidência: \({a}\left[{x}^2 {sinal(Fraction(b, a))} \\frac{{{b}{x}}}{a}\\right]\)</li>
+    <li>Começamos a completar quadrado usando essa estrutura e copiando as partes pintadas: \({a}\left[\color{{#A80}}{{{x}}}^2
+      \color{{#A80}}{{{sinal(Fraction(b, a))}}} \\frac{{{b}{x}}}{{{a}}} \\right] \\to {a}\left[ \left(\color{{#A80}}{{{x} +}}\ \\right)^2 \\right]\)
+    </li>
+
+    <li>Adicionamos \(-()^2\) no local pintado: \({a}\left[ \left({x} +\ \\right)^2 \color{{#A80}}{{-()^2}} \\right]\)
+    <li>Dividimos \({fractex(b, a, simplifcar=True)}\) por \(2\), teremos \({fractex(b, 2*a, simplifcar=True)}\) e colocamos no local pintado: 
+    \({a}\left[ \left({x} {sinal(Fraction(b, a))}
+      \color{{#A80}}{{{fractex(b, 2*a)}}}\ \\right)^2 - \left(\color{{#A80}}{{{fractex(b, 2*a)}}} \\right)^2 \\right]\)</li>
+    <li>Operando a equação teremos: \[\color{{#A80}}{{{a}}}\left[ \left({x} {sinal(Fraction(b, a))} {fractex(b, 2*a)}\ \\right)^2 - \left({fractex(b, 2*a)} \\right)^2 \\right]\\\
+    \color{{#A80}}{{{a}}}\left({x} {sinal(Fraction(b, a))} {fractex(b, 2*a)}\ \\right)^2 - \color{{#A80}}{{{a}}}\left({fractex(b, 2*a)} \\right)^2\]</li>
+  </ol>''')
+    result.append(f'{a}\left({x} {sinal(Fraction(b, a))} {fractex(b, 2*a)}\ \\right)^2')
+    result.append(f'{a}\left({fractex(b, 2*a)}\\right)^2')
+
+    return result
+
+def gerar_completar_quadrado(equation, result, x, y = None, z = None, F = 0):
+
+    if F:
+        F *= -1
+    else:
+        F = 0
+
+    resultado = ""
+    incognitas = {}
+    if x and x[0] and x[1] and x[0] != 0:
+        incognitas['x'] = {"a": x[0], "b": x[1], "c": 0, 'd':1, 'expr':[]}
+    if y and y[0] and y[1] and (y[0] != 0):
+        incognitas['y'] = {"a": y[0], "b": y[1], "c": 0, 'd':1, 'expr':[]}
+    if z and z[0] and z[1] and z[0] != 0:
+        incognitas['z'] = {"a": z[0], "b": z[1], "c": 0, 'd':1, 'expr':[]}
+    if not incognitas:
+        raise ValueError
+
+    text = (
+        HTML_BASE
+        + f"""<p>Completar quadrado é justamente o contrário de expandir um produto notável. Por exemplo, expandindo \((a + b)^2\) vamos obter \(a² + 2ab + b^2\). Já ao completar quadrado vamos começar com \(a² + 2ab + b^2\) e chegar a \((a + b)^2\), seguimos os passos:</p>
+        <details>
+    <summary>Clique para ver os passos</summary>
+    <ol>
+      <li>Começamos com uma equação do tipo \(ax^2 + bx + c = 0\).</li>
+      <li>Passamos o \(c\) para o outro lado: \(ax^2 + bx = -c\).</li>
+      <li>Se \(a \\neq 1\) colocamos \(a\) em evidência: \(a\left[x^2 + \\frac{{bx}}{{a}}\\right] = -c\)</li>
+      <li>Começamos a completar quadrado usando essa estrutura e copiando as partes pintadas: \(a\left[\color{{#A80}}{{x}}^2
+        \color{{#A80}}{{+}} \\frac{{bx}}{{a}}\\right] = -c \\to a\left[ \left(\color{{#A80}}{{x +}}\ \\right)^2\\right] = -c\)</li>
+      <li>Adicionamos \(-()^2\) no local pintado: \(a\left[ \left(x +\ \\right)^2 \color{{#A80}}{{-()^2}}\\right] = -c\)</li>
+      <li>Dividimos \(\\frac{{b}}{{a}}\) por 2, teremos \(\\frac{{b}}{{2a}}\) e colocamos no local pintado: \(a\left[ \left(x +
+        \color{{#A80}}{{\\frac{{b}}{{2a}}}}\ \\right)^2 - \left(\color{{#A80}}{{\\frac{{b}}{{2a}}}}\\right)^2\\right] = -c\)</li>
+      <li>Operando a equação teremos: \[\color{{#A80}}{{a}}\left[ \left(x + \\frac{{b}}{{2a}}\ \\right)^2 -
+        \left(\\frac{{b}}{{2a}}\\right)^2\\right] = -c\\
+        \color{{#A80}}{{a}}\left(x + \\frac{{b}}{{2a}}\ \\right)^2 - \color{{#A80}}{{a}}\left(\\frac{{b}}{{2a}}\\right)^2 = -c\\
+        a\left(x + \\frac{{b}}{{2a}}\ \\right)^2 = -c + \color{{#A80}}{{a\left(\\frac{{b}}{{2a}}\\right)^2}}\]</li>
+    </ol>
+  </details>
+  <p>Temos a equação \({equation}\), vamos completar quadrado nela.</p>""")
+    for k, i in incognitas.items():
+        incognitas[k]['expr'] = completar_incognita(i['a'], i['b'], k)
+        text += incognitas[k]['expr'][0]
+
+    text += f"""<p>Após completar quadrado nossa equação \({equation}\), fica:
+    \["""
+    for k, i in incognitas.items():
+        if text[-1] == '[':
+            text += f"{i['expr'][1]} - {i['expr'][2]}"
+        else:
+            text += f"{'+' if i['expr'][1] != '-' else ''} {i['expr'][1]} - {i['expr'][2]}"
+    text += f' = {F} \\\\'
+    final = ''
+    for k, i in incognitas.items():
+        if text[-1] == '\\':
+            text += f"{i['expr'][1]}"
+        else:
+            text += f"{'+' if i['expr'][1] != '-' else ''} {i['expr'][1]}"
+        if final == '':
+            final += f"{i['expr'][2]}"
+        else:
+            final += f"{'+' if i['expr'][2] != '-' else ''}{i['expr'][2]}"
+    text += f" = {final}{'+' if F >= 0 else ''}{F} \\\\"
+    text += f'{result}\] </body></html>'
+
 
     with open("calculo1.html", "w") as file:
         file.write(text)

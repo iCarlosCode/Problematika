@@ -3,9 +3,7 @@ from tkinter import *
 from tkinter import ttk
 from tabs import (
     padrao,
-    produto_escalar,
-    produto_misto,
-    produto_vetorial,
+    produtos,
     BrowserFrame,
     criarLinhaDeBotões,
     sobre,
@@ -40,12 +38,10 @@ def main():
     tab_control.grid(sticky="NSEW")
 
     # Create Tabs
-    completar_quadrado.criarTab(tab_control)
     padrao.criarTab(tab_control)
-    produto_escalar.criarTab(tab_control)
-    produto_vetorial.criarTab(tab_control)
-    produto_misto.criarTab(tab_control)
+    produtos.criarTab(tab_control)
     pos_relativa.criarTab(tab_control)
+    completar_quadrado.criarTab(tab_control)
     sobre.criarTab(tab_control)
 
     # Create Frame

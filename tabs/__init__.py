@@ -79,6 +79,40 @@ def criarLinhaDeTexto(master, text='', font=(), row = 0, columnspan=1):
 def obterVetor(linha):
     return (linha['x']['coordenada'].get(), linha['y']['coordenada'].get(), linha['z']['coordenada'].get())
     
+def on_mousewheel(self, event):
+    self.yview_scroll(int(-1*event.delta/120), 'units')
+
+def onFrameConfigure(canvas):
+    canvas.configure(scrollregion=canvas.bbox('all'))
+
+def onCanvasConfigure(canvas, frame):
+    canvas.update()
+    canvas.create_window((0,0), window=frame, anchor=NW, width=canvas.winfo_width())
+
+class CustomText(tk.Text):
+    def __init__(self, *args, **kwargs):
+        """A text widget that report on internal widget commands"""
+        tk.Text.__init__(self, *args, **kwargs)
+
+        # create a proxy for the underlying widget
+        self._orig = self._w + "_orig"
+        self.tk.call("rename", self._w, self._orig)
+        self.tk.createcommand(self._w, self._proxy)
+
+    def _proxy(self, command, *args):
+        if command == 'get' and (args[0] == 'sel.first' and args[1] == 'sel.last') and not self.tag_ranges('sel'): return
+
+        # avoid error when deleting
+        if command == 'delete' and (args[0] == 'sel.first' and args[1] == 'sel.last') and not self.tag_ranges('sel'): return
+
+        cmd = (self._orig, command) + args
+        result = self.tk.call(cmd)
+
+        if command in ('insert'):
+                    self.event_generate('<<TextModified>>')
+
+        return result
+
 class BrowserFrame(tk.Frame):
 
     def __init__(self, mainframe, entry_url_var = None):

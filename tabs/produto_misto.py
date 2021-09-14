@@ -12,26 +12,46 @@ def criarTab(tab_control):
     lbl_font = ('arial', 11, 'bold')
 
     produto_misto = ttk.Frame(tab_control)
-    produto_misto.grid(sticky='NSEW')
-    produto_misto.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7), weight=1)
+    produto_misto.grid_columnconfigure(0, weight=1)
+    produto_misto.grid_rowconfigure(0, weight=1)
+
+    
     tab_control.add(produto_misto, text='Produto Misto')
 
+    
+    cv = Canvas(produto_misto, highlightthickness=0)
+    vsb = Scrollbar(produto_misto, orient=VERTICAL, command=cv.yview)
+    frame = Frame(cv)
+    #frame.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7), weight=1)
+    
+    cv.configure(yscrollcommand=vsb.set)
+    
+    cv.grid(row=0, column=0, sticky=NSEW)#.pack(side=LEFT, fill=BOTH, expand=True)
+    vsb.grid(row=0, column=1, sticky=NSEW)#.pack(side=RIGHT, fill=Y)
+
+    cv.update()
+    cv.create_window((0,0), window=frame, anchor=NW, width=cv.winfo_width())
+
+    cv.bind_all('<MouseWheel>', lambda event, canvas=cv: on_mousewheel(canvas, event))
+    cv.bind('<Configure>', lambda event, canvas=cv, frame=frame: onCanvasConfigure(canvas, frame))
+    frame.bind('<Configure>', lambda event, canvas=cv: onFrameConfigure(canvas))
+
     #LINHA 0
-    linhas.append(criarLinhaDeResultado(produto_misto))
+    linhas.append(criarLinhaDeResultado(frame))
     #LINHA 1
-    linhas.append(criarLinhaDeTexto(produto_misto, 'Digite as coordenadas do primeiro vetor:', lbl_font, row = 1, columnspan=3))
+    linhas.append(criarLinhaDeTexto(frame, 'Digite as coordenadas do primeiro vetor:', lbl_font, row = 1, columnspan=3))
     #LINHA 2
-    linhas.append(criarLinhaDeCoordenadas(produto_misto, row = 2))
+    linhas.append(criarLinhaDeCoordenadas(frame, row = 2))
     #LINHA 3
-    linhas.append(criarLinhaDeTexto(produto_misto, 'Digite as coordenadas do segundo vetor:', lbl_font, row = 3, columnspan=3))
+    linhas.append(criarLinhaDeTexto(frame, 'Digite as coordenadas do segundo vetor:', lbl_font, row = 3, columnspan=3))
     #LINHA 4
-    linhas.append(criarLinhaDeCoordenadas(produto_misto, row = 4))
+    linhas.append(criarLinhaDeCoordenadas(frame, row = 4))
     #LINHA 5
-    linhas.append(criarLinhaDeTexto(produto_misto, 'Digite as coordenadas do terceiro vetor:', lbl_font, row = 5, columnspan=3))
+    linhas.append(criarLinhaDeTexto(frame, 'Digite as coordenadas do terceiro vetor:', lbl_font, row = 5, columnspan=3))
     #LINHA 5
-    linhas.append(criarLinhaDeCoordenadas(produto_misto, row = 6))
+    linhas.append(criarLinhaDeCoordenadas(frame, row = 6))
     #LINHA 6
-    linhas.append(criarBotãoCalcular(produto_misto, 7, lambda: calcular(tab_control)))
+    linhas.append(criarBotãoCalcular(frame, 7, lambda: calcular(tab_control)))
     
 
 def calcular(widget):
