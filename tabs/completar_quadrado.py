@@ -33,6 +33,7 @@ def criarTab(tab_control):
 def calcular(widget):
     equation = linhas[1].get("1.0",END)
     li = equation_to_list(equation)
+
     result = completar_eq(equation, li)
     linhas[0]['resultado'].set(result)
 
@@ -71,7 +72,6 @@ def equation_to_list(equation = 'x²+y²-6x+10y+18=0'):
 def completar_eq(equation = 'x²+y²-6x+10y+18=0', li=[]):
     # TODO tabs split equation resolver a questão dos números antes e depois do igual, # TODO resolver obter coeficiente em completar_eq
     # GAMBIARRA
-
     if '=0' in equation or '= 0' in equation: #re.match(r"=\s*([-+]\s*)*0*", equation):
         return completar_quadrado((li[0],li[1]), y=(li[2], li[3]), z=(li[4], li[5]), F=li[6])
     elif li[6]:
