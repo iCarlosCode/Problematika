@@ -38,7 +38,6 @@ def calcularPosRelativaDuasRetas(pR = (0, 0, 0), vR = (0, 0, 0), pS = (0, 0, 0),
 
 
 def obter_coeficiente(e, array):
-
     F = [i for i in array if '=' in i]
 
     if e == '=' and F:
@@ -68,6 +67,9 @@ def valor_formatado(n):
     return f"+ {Fraction(n)}" if n >= 0 else f"- {Fraction(-1*n)}"
 
 def completar_quadrado(x, y = None, z = None, F = 0):
+    # GAMBIARRA PAR NÃO PERDER ICOGNITAS DE GRAU 1
+    icograu1 = []
+    
     if F:
         F *= -1
     else:
@@ -75,12 +77,21 @@ def completar_quadrado(x, y = None, z = None, F = 0):
 
     resultado = ""
     incognitas = {}
-    if x and x[0] and x[1] and x[0] != 0:
-        incognitas['x'] = {"a": x[0], "b": x[1], "c": 0, 'd':1, 'expr':''}
-    if y and y[0] and y[1] and (y[0] != 0):
-        incognitas['y'] = {"a": y[0], "b": y[1], "c": 0, 'd':1, 'expr':''}
-    if z and z[0] and z[1] and z[0] != 0:
-        incognitas['z'] = {"a": z[0], "b": z[1], "c": 0, 'd':1, 'expr':''}
+    if x:
+        if x[0] and x[0] != 0:
+            incognitas['x'] = {"a": x[0], "b": x[1], "c": 0, 'd':1, 'expr':''}
+        elif x[1] and x[1] != 0:
+            icograu1.append(f" {valor_formatado(x[1])}x".replace("- 1x", "- x").replace("+ 1x", "+ x"))
+    if y:
+        if y[0] and y[0] != 0:
+            incognitas['y'] = {"a": y[0], "b": y[1], "c": 0, 'd':1, 'expr':''}
+        elif y[1] and y[1] != 0:
+            icograu1.append(f" {valor_formatado(y[1])}y".replace("- 1y", "- y").replace("+ 1y", "+ y"))
+    if z:
+        if z[0] and z[0] != 0:
+            incognitas['z'] = {"a": z[0], "b": z[1], "c": 0, 'd':1, 'expr':''}
+        elif z[1] and z[1] != 0:
+            icograu1.append(f" {valor_formatado(z[1])}z".replace("- 1z", "- z").replace("+ 1z", "+ z"))
     if not incognitas:
         raise ValueError
 
@@ -101,6 +112,9 @@ def completar_quadrado(x, y = None, z = None, F = 0):
     
         F += i['c']
 
+    for i in icograu1:
+        resultado += i
+    
     return f'{resultado} = {F}'
 
 

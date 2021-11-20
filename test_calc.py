@@ -66,6 +66,8 @@ class TestOperations(unittest.TestCase):
         self.assertEqual("3(x + 1/3)² = 1/3", op.completar_quadrado((3, 2)))
         self.assertEqual("3(x + 5/6)² = 25/12", op.completar_quadrado((3, 5)))
         
+        self.assertEqual("(x + 1)² + y = 1", op.completar_quadrado((1, 2), (None, 1)))
+
         with self.assertRaises(ValueError):
             op.completar_quadrado((0, 0))
 
